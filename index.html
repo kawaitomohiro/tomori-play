@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トモリの火が消えた夜｜学習発表会の劇・人数に合わせた台本</title>
+<meta name="description" content="学習発表会の劇「トモリの火が消えた夜」。20〜140人の人数に合わせて配役と台本が変わり、Wordで出力できます。">
+<meta property="og:title" content="トモリの火が消えた夜｜学習発表会の劇">
+<meta property="og:description" content="20〜140人の人数に合わせて配役と台本が変わり、Wordで出せます。BGM・背景・舞台・衣装の資料つき。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kawaitomohiro.github.io/tomori-play/img/title.jpg">
+<meta property="og:url" content="https://kawaitomohiro.github.io/tomori-play/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f1430'/%3E%3Cpath d='M32 10c6 10 14 16 14 28a14 14 0 0 1-28 0c0-8 6-12 8-20 2 6 6 8 6 8s1-8 0-16z' fill='%23ffb84a'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0f1430;--card:#18204a;--ink:#f6f0dd;--sub:#c9c2a8;--gold:#ffd98a;--line:#2c3770;--hl:#fff3a6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Sans","Meiryo",sans-serif;line-height:1.7}
+a{color:var(--gold)}
+button{font-family:inherit}
+/* トップ画面 */
+#splash{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:#0b1030 url(img/title.jpg) center/cover no-repeat;transition:opacity .5s}
+#splash::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(5,8,30,.55),rgba(5,8,30,.1) 45%,rgba(5,8,30,.6))}
+#splash h1,#splash p{position:relative;margin:0;text-shadow:0 2px 12px #000}
+#splash h1{font-size:clamp(30px,7vw,64px);color:var(--gold);letter-spacing:.08em}
+#splash p{font-size:clamp(15px,3.2vw,22px);margin-top:10px}
+#splash.hide{opacity:0;pointer-events:none}
+/* 上 */
+header{position:relative;min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 16px 18px;
+  background:#0b1030 url(img/title.jpg) center 40%/cover no-repeat}
+header::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(5,8,30,.2),rgba(5,8,30,.85))}
+header *{position:relative}
+header h1{margin:0;font-size:clamp(26px,5vw,44px);color:var(--gold)}
+header p{margin:4px 0 0;color:var(--ink)}
+nav.pages{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;background:#0b1030;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav.pages a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;background:var(--card)}
+main{max-width:1100px;margin:0 auto;padding:16px}
+section.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+h2{margin:0 0 10px;font-size:22px;color:var(--gold)}
+h3{margin:16px 0 8px;font-size:18px}
+.note{color:var(--sub);font-size:14px}
+/* 人数 */
+.ninzu{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.ninzu .num{font-size:44px;font-weight:800;color:var(--gold);min-width:3.2em;text-align:center}
+.ninzu button{min-width:58px;height:48px;border-radius:12px;border:1px solid var(--line);background:#24306a;color:var(--ink);font-size:18px;font-weight:700;cursor:pointer}
+.ninzu button:active{transform:scale(.96)}
+input[type=range]{width:100%;accent-color:#ffb84a;height:32px}
+.summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{padding:4px 10px;border-radius:999px;background:#24306a;font-size:14px}
+/* 表 */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{white-space:nowrap;color:var(--gold);position:sticky;top:0;background:var(--card)}
+td input{width:100%;min-width:7em;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:#0f1638;color:var(--ink);font-size:15px}
+td.role{font-weight:800;white-space:nowrap}td.role small{display:none;font-weight:400;font-size:12px;color:var(--sub);white-space:normal}
+.grp{white-space:nowrap;color:var(--sub)}
+/* 台本 */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+select{padding:8px;border-radius:8px;background:#0f1638;color:var(--ink);border:1px solid var(--line);font-size:15px;max-width:100%}
+.script{max-height:70vh;overflow:auto;background:#fbf7ea;color:#222;border-radius:10px;padding:14px 16px;font-family:"BIZ UDPMincho","Hiragino Mincho ProN","Yu Mincho",serif}
+.script .h1{font-family:sans-serif;font-weight:800;font-size:20px;margin:22px 0 8px;border-bottom:2px solid #c8a046}
+.script .h2,.script .h3{font-family:sans-serif;font-weight:800;margin:14px 0 6px}
+.script .dir{font-family:sans-serif;color:#555;font-size:14px;margin:6px 0 6px 2em}
+.script .ln{margin:4px 0;padding-left:7em;text-indent:-7em}
+.script .ln b{font-family:sans-serif;display:inline-block;min-width:7em;text-indent:0}
+.script .flag{background:var(--hl)}
+.script .as{display:block;font-weight:400;font-size:11px;color:#777}.script .me{background:#ffd0a8;border-radius:4px}
+.script .swap{font-family:sans-serif;font-size:14px;background:#e6f0ff;border-radius:6px;padding:2px 8px;display:inline-block;margin:4px 0 4px 2em}
+.review li{margin:4px 0;font-size:14px}
+/* ボタン */
+.big{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:14px;border:0;background:linear-gradient(#ffcf6b,#f0a83a);color:#3a2300;font-size:18px;font-weight:800;cursor:pointer}
+.big[disabled]{opacity:.6;cursor:wait}
+.sub{padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#24306a;color:var(--ink);font-weight:700;cursor:pointer}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:15px}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.links a{display:block;padding:14px;border-radius:12px;background:#24306a;text-decoration:none;color:var(--ink);border:1px solid var(--line)}
+.links a b{display:block;color:var(--gold);font-size:17px}
+footer{max-width:1100px;margin:0 auto;padding:20px 16px 60px;color:var(--sub);font-size:13px}
+.xlink{display:inline-block;margin-top:8px;padding:6px 12px;border-radius:999px;border:1px solid #4a5280;color:#b8bcd4;background:transparent;font-size:13px;cursor:pointer}
+/* 自前のダイアログ・カード */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .box{background:#1d2656;border:1px solid var(--line);border-radius:14px;padding:18px;max-width:480px;width:100%}
+.modal .box button{margin:6px 6px 0 0}
+.tpl{display:block;width:100%;text-align:left;margin:8px 0;padding:10px;border-radius:10px;border:1px solid var(--line);background:#24306a;color:var(--ink);cursor:pointer;font-size:14px}
+#doneCard{position:fixed;right:12px;bottom:12px;z-index:40;max-width:min(320px,calc(100vw - 24px));background:#1d2656;border:1px solid var(--line);border-radius:12px;padding:12px;display:none;font-size:14px}
+#doneCard.on{display:block}
+#busy{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:rgba(5,8,30,.7);font-size:20px;font-weight:800;color:var(--gold)}
+#busy.on{display:flex}
+@media (prefers-reduced-motion:reduce){#splash{transition:none}}
+@media (max-width:600px){table{min-width:0}.grp,.memo{display:none}td.role{white-space:normal}td.role small{display:block}nav.pages{flex-wrap:nowrap;overflow-x:auto;padding:8px 12px}nav.pages a{white-space:nowrap;flex:0 0 auto}.ninzu .num{font-size:36px}.ninzu button{min-width:48px}.script .ln{padding-left:5.5em;text-indent:-5.5em}.script .ln b{min-width:5.5em}}
+</style>
+</head>
+<body>
+<div id="splash" aria-hidden="true"><h1>トモリの火が消えた夜</h1><p>学習発表会の劇 ／ 人数に合わせた台本をWordで</p></div>
+
+<header>
+  <h1>トモリの火が消えた夜</h1>
+  <p>〜わすれても、ともだち〜　学習発表会の劇（上演 約40分。83人以上は約42分）</p>
+</header>
+<nav class="pages">
+  <a href="#haiyaku">🎟️ 配役と台本</a>
+  <a href="pages/butai.html">🏗️ 舞台</a>
+  <a href="pages/haikei.html">🎨 背景</a>
+  <a href="pages/ongaku.html">🎵 音楽</a>
+  <a href="pages/ugoki.html">🎭 動き</a>
+  <a href="pages/ishou.html">🧥 衣装</a>
+  <a href="#riyou">📜 使うときの約束</a>
+</nav>
+
+<main>
+<section class="card">
+  <h2>どんな劇？</h2>
+  <p>人間の町と魔女の山が、年に一度だけ交わる「星ふるバザール」。友情の火「トモリ」が消え、魔女の子ルーチェが疑われます。町の子ノアは、ルーチェを信じぬけるのか。猫たちの捜査、森の塔の魔法使い、そして「思い出」と引きかえの選択——。<b>テーマは「友だちと、信じる心」</b>。全員にセリフが2つ以上あり、合唱曲を4回歌います。</p>
+  <p class="note">入れた子どもの名前は、どこにも送りません。この端末のブラウザの中だけに残ります。共用のタブレットやパソコンでは、使い終わったら「名前をぜんぶ消す」を押してください。</p>
+</section>
+
+<section class="card" id="haiyaku">
+  <h2>① 人数を決める</h2>
+  <div class="ninzu">
+    <button type="button" data-d="-10">−10</button>
+    <button type="button" data-d="-1">−1</button>
+    <div class="num" id="nNum">68</div>
+    <button type="button" data-d="1">＋1</button>
+    <button type="button" data-d="10">＋10</button>
+    <span>人（20〜140人）</span>
+  </div>
+  <input type="range" id="nRange" min="20" max="140" value="68" aria-label="人数">
+  <div class="summary" id="summary"></div>
+  <p class="note">人数が少ないときは、小さな役のセリフをほかの役がまとめて言います（兼ね役）。多いときは、主な役を場面ごとに交代（①②③…）し、83人からは「星の語り部」（場面のつなぎの群読）がふえます。どの人数でも、全員にセリフが2つ以上あります。68人がもとの台本です。</p>
+</section>
+
+<section class="card">
+  <h2>② 配役表（名前を入れられます）</h2>
+  <div class="toolbar">
+    <button type="button" class="sub" id="clearNames">名前をぜんぶ消す</button>
+    <span class="note">名前は入れなくても台本を出せます。名前は人数ごとに覚えます（人数を変えると、その人数の表に入れた名前が出ます）。</span>
+  </div>
+  <div class="tablewrap"><table><thead><tr><th class="grp">組</th><th>役</th><th class="memo">メモ</th><th>セリフ</th><th>名前</th></tr></thead><tbody id="castBody"></tbody></table></div>
+</section>
+
+<section class="card">
+  <h2>③ 台本を見る</h2>
+  <div class="toolbar">
+    <label>役をえらぶとセリフが光る：<select id="roleSel"><option value="">（えらばない）</option></select></label>
+  </div>
+  <div id="reviewBox"></div>
+  <div class="script" id="script"></div>
+</section>
+
+<section class="card">
+  <h2>④ Wordで出す</h2>
+  <p>縦書き・A4の台本（表紙・配役表・登場場面一覧つき）を作ります。上演時間の目安は <b id="jikan">約40分</b> です。Wordでセリフ・ト書き・役名をそのまま直せます。</p>
+  <p><label class="ck"><input type="checkbox" id="mark" checked> 見直したい所に黄色の印をつける</label></p>
+  <button type="button" class="big" id="dl">📄 Wordの台本を作る</button>
+  <p class="note">セリフ・ト書き・場面の見出しは、それぞれ「セリフ」「ト書き」「場面」という名前のスタイルです。スタイルを変えると、台本全体がまとめて変わります。Macのプレビューでは書体が置きかわることがあります（Windowsでは BIZ UD明朝・ゴシック）。</p>
+</section>
+
+<section class="card">
+  <h2>素材のページ</h2>
+  <div class="links">
+    <a href="pages/butai.html"><b>🏗️ 舞台と装置</b>場面ごとの舞台図・置く物・転換</a>
+    <a href="pages/haikei.html"><b>🎨 背景</b>プロジェクターに映す背景の絵</a>
+    <a href="pages/ongaku.html"><b>🎵 音楽</b>場面ごとのBGMと再生</a>
+    <a href="pages/ugoki.html"><b>🎭 動き</b>立ち位置（68人で上演した例）</a>
+    <a href="pages/ishou.html"><b>🧥 衣装</b>役ごとの衣装のイラスト</a>
+  </div>
+</section>
+
+<section class="card" id="riyou">
+  <h2>使うときの約束</h2>
+  <ul>
+    <li>学校での上演は無料です。連絡はいりません。</li>
+    <li>台本は、子どもの実態や人数に合わせて自由に直してかまいません。</li>
+    <li>台本・BGM・背景・イラストを、そのまま、または直したものを、販売したり、ほかのサイトで配ったりすることはできません。</li>
+    <li>上演の録画を動画サイトなどで公開するときは、合唱曲の部分を外すか、各校で著作権の手続きをしてください。BGM・背景の絵が入ったままの公開はかまいません。</li>
+    <li>上演したら、Xで教えてもらえるとうれしいです（@rohimotoiwaka）。おねがいで、決まりではありません。</li>
+  </ul>
+  <h3>劇中の歌について</h3>
+  <p>この劇は、合唱曲「大切なもの」（作詞・作曲 山崎朋子）を4回歌う前提で作っています。曲は各校で用意してください（楽譜・伴奏）。このサイトと台本には、歌詞と伴奏の音源は入れていません。学校で歌っている別の合唱曲に差しかえてもかまいません。</p>
+  <h3>作った人</h3>
+  <p>作：川合智宏（公立小学校教員）。BGMの多くは作者が音楽生成AI（Suno・有料プラン）で作った曲、背景・舞台・衣装の絵は画像生成AIで作った絵です。銅鑼の効果音と劇中の合唱曲は入っていないので、各校で用意してください。</p>
+</section>
+</main>
+
+<footer>
+  トモリの火が消えた夜　© 川合智宏<br>
+  <button type="button" class="xlink" id="xOpen">📣 感想をXでシェア</button>
+</footer>
+
+<div class="modal" id="xModal" role="dialog" aria-modal="true" aria-label="Xでシェア">
+  <div class="box">
+    <b>Xに投稿する文をえらんでください</b>
+    <div id="xTpls"></div>
+    <button type="button" class="sub" id="xClose">閉じる</button>
+  </div>
+</div>
+<div class="modal" id="askModal" role="dialog" aria-modal="true">
+  <div class="box"><p id="askText"></p><button type="button" class="big" id="askYes">消す</button><button type="button" class="sub" id="askNo">やめる</button></div>
+</div>
+<div class="modal" id="msgModal" role="dialog" aria-modal="true">
+  <div class="box"><p id="msgText"></p><button type="button" class="sub" id="msgOk">閉じる</button></div>
+</div>
+<div id="doneCard"><b>Wordの台本ができました。</b><br>共用の端末なら、使い終わったら名前を消してください。<br>感想をXで教えてもらえるとうれしいです。<br>
+  <button type="button" class="sub" id="cardClear">名前をぜんぶ消す</button> <button type="button" class="sub" id="cardX">📣 シェアする</button> <button type="button" class="sub" id="cardClose">閉じる</button> <button type="button" class="sub" id="cardNever">今後表示しない</button></div>
+<div id="busy">台本を作っています…</div>
+
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/vendor/docx.iife.js"></script>
+<script src="js/docx_export.js"></script>
+<script>
+(function(){
+  /* トップ画面：2.8秒見せてから消す（録画・試験は window.__noSplash で飛ばす） */
+  var sp=document.getElementById('splash');
+  if(window.__noSplash){sp.remove();}else{setTimeout(function(){sp.classList.add('hide');setTimeout(function(){sp.remove();},600);},2800);}
+
+  var E=window.TomoriEngine, SN=E.SEGNAME;
+  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null;}}
+  var names={}; function loadNames(){try{names=JSON.parse(ls('tomori_names_'+N)||'{}')||{};}catch(e){names={};}}
+  var N=parseInt(ls('tomori_n')||'68',10); if(!(N>=20&&N<=140))N=68;
+  var R=null, me=''; loadNames();
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;';}).split('"').join('&quot;');}
+  function md(s){return esc(s).split('**').map(function(p,i){return i%2?'<b>'+p+'</b>':p;}).join('');}
+
+  function render(){
+    R=E.assign(N); ls('tomori_n',String(N)); loadNames();
+    document.getElementById('nNum').textContent=N; document.getElementById('jikan').textContent='約'+(R.narrators?42:40)+'分';
+    document.getElementById('nRange').value=N;
+    var st=R.state, merged=Object.keys(R.mergeTo).length, swaps=R.actors.filter(function(a){return /[①-⑧]$/.test(a.label)&&a.group!=='星の語り部';}).length;
+    document.getElementById('summary').innerHTML=
+      '<span class="chip">役 '+R.actors.length+'</span>'+
+      (merged?'<span class="chip">兼ね役で休む役 '+merged+'</span>':'')+
+      '<span class="chip">交代で演じる役 '+swaps+'</span>'+
+      (R.narrators?'<span class="chip">星の語り部 '+R.narrators+'人</span>':'')+
+      '<span class="chip">見直したい所 '+R.review.length+'</span>';
+    /* 配役表 */
+    var h='';
+    R.actors.forEach(function(a){
+      var m=a.desc||''; if(a.also.length)m+=(m?'／':'')+a.also.join('・')+'のセリフも言う'; if(a.range&&/[①-⑨]$/.test(a.label))m+=(m?'／':'')+'受け持ち：'+a.range.filter(function(s){return a.segs[s];}).map(function(s){return SN[s];}).join('・');
+      h+='<tr><td class="grp">'+esc(a.group)+'</td><td class="role">'+esc(a.label)+'<small>'+esc(m)+'</small></td><td class="memo">'+esc(m)+'</td><td>'+a.lines+'</td><td><input data-k="'+esc(a.label)+'" value="'+esc(names[a.label]||'')+'" maxlength="20" aria-label="'+esc(a.label)+'の名前"></td></tr>';
+    });
+    document.getElementById('castBody').innerHTML=h;
+    /* 役のえらび */
+    var sel=document.getElementById('roleSel'), o='<option value="">（えらばない）</option>';
+    R.actors.forEach(function(a){o+='<option'+(a.label===me?' selected':'')+'>'+esc(a.label)+'</option>';});
+    sel.innerHTML=o; if(!R.actors.some(function(a){return a.label===me;}))me='';
+    renderScript(); renderReview();
+  }
+  function isMe(b){ if(!me)return false; if(b.sp===me)return true;
+    if(b.who&&/^語り部/.test(me))return b.who.indexOf(parseInt(me.replace('語り部',''),10))>=0; return false; }
+  function renderScript(){
+    var h='';
+    R.blocks.forEach(function(b){
+      var f=b.flags&&b.flags.length?' flag':'';
+      if(b.t==='h1')h+='<div class="h1">'+md(b.text)+'</div>';
+      else if(b.t==='h2'||b.t==='h3'){h+='<div class="h2">'+md(b.text)+'</div>';(b.swap||[]).forEach(function(s){h+='<div class="swap">【交代】'+esc(s)+'</div>';});}
+      else if(b.t==='dir'||b.t==='note')h+='<div class="dir'+f+'">'+md(b.text)+'</div>';
+      else if(b.t==='line')h+='<div class="ln'+f+(isMe(b)?' me':'')+'"><b>'+esc(b.sp)+(b.asRole?'<small class="as">〈元：'+esc(b.asRole)+'〉</small>':'')+'</b>　'+md(b.text)+'</div>';
+    });
+    var el=document.getElementById('script'), top=el.scrollTop; el.innerHTML=h; el.scrollTop=top;
+  }
+  function renderReview(){
+    var box=document.getElementById('reviewBox');
+    if(!R.review.length){box.innerHTML='<p class="note">この人数では、見直したい所はありません。</p>';return;}
+    var h='<details><summary>人数に合わせて見直したい所（'+R.review.length+'か所・台本では黄色）</summary><ul class="review">';
+    R.review.forEach(function(r){h+='<li>'+esc(SN[r.seg])+'　'+esc(r.sp)+'「'+esc(r.text.replace(/\*\*/g,'').slice(0,26))+'…」→ '+esc(r.why.join('／'))+'</li>';});
+    box.innerHTML=h+'</ul></details>';
+  }
+  function setN(v){v=Math.max(20,Math.min(140,v));if(v===N)return;N=v;render();}
+  document.querySelectorAll('.ninzu button').forEach(function(b){b.addEventListener('click',function(){setN(N+parseInt(b.getAttribute('data-d'),10));});});
+  var rt=null; document.getElementById('nRange').addEventListener('input',function(e){var v=parseInt(e.target.value,10);document.getElementById('nNum').textContent=v;clearTimeout(rt);rt=setTimeout(function(){setN(v);},120);});
+  document.getElementById('castBody').addEventListener('input',function(e){var k=e.target.getAttribute('data-k');if(!k)return;var v=e.target.value.trim();if(v)names[k]=v;else delete names[k];ls('tomori_names_'+N,JSON.stringify(names));});
+  document.getElementById('roleSel').addEventListener('change',function(e){me=e.target.value;renderScript();var f=document.querySelector('#script .me');if(f)f.scrollIntoView({block:'center'});});
+
+  /* 名前をぜんぶ消す（自前の確認） */
+  var ask=document.getElementById('askModal');
+  document.getElementById('clearNames').addEventListener('click',function(){document.getElementById('askText').textContent='この端末に入れた名前を、すべての人数の表からぜんぶ消します。よろしいですか？';ask.classList.add('on');});
+  document.getElementById('askNo').addEventListener('click',function(){ask.classList.remove('on');});
+  document.getElementById('askYes').addEventListener('click',function(){names={};for(var i=20;i<=140;i++)ls('tomori_names_'+i,null);ls('tomori_names',null);ask.classList.remove('on');render();});
+  ask.addEventListener('click',function(e){if(e.target===ask)ask.classList.remove('on');});
+
+  var msg=document.getElementById('msgModal'); document.getElementById('msgOk').addEventListener('click',function(){msg.classList.remove('on');});
+  /* Word */
+  var busy=false;
+  document.getElementById('dl').addEventListener('click',function(){
+    if(busy)return; busy=true; var btn=this; btn.disabled=true; document.getElementById('busy').classList.add('on');
+    setTimeout(function(){
+      Promise.resolve().then(function(){return TomoriDocx.build(R,{names:names,mark:document.getElementById('mark').checked});})
+      .then(function(blob){
+        var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='トモリの火が消えた夜_'+N+'人.docx';
+        document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},2000);
+        showCard();
+      }).catch(function(err){ document.getElementById('msgText').textContent='Wordを作れませんでした。もう一度ためしてください。（'+(err&&err.message||err)+'）'; msg.classList.add('on'); })
+      .then(function(){busy=false;btn.disabled=false;document.getElementById('busy').classList.remove('on');});
+    },30);
+  });
+
+  /* Xでシェア */
+  var X_URL='https://twitter.com/intent/tweet?text=';
+  var TPL=['「トモリの火が消えた夜」を使ってみました！おすすめです👍 @rohimotoiwaka #GASアプリで学校をHappyに',
+    '学習発表会の劇「トモリの火が消えた夜」、人数に合わせて台本をWordで出せるのが助かります。 @rohimotoiwaka #GASアプリで学校をHappyに',
+    '「トモリの火が消えた夜」を学習発表会で上演しました！ @rohimotoiwaka #GASアプリで学校をHappyに'];
+  var xm=document.getElementById('xModal'), xt=document.getElementById('xTpls'), opening=false;
+  TPL.forEach(function(t){var b=document.createElement('button');b.type='button';b.className='tpl';b.textContent=t;b.addEventListener('click',function(){
+    if(opening)return; opening=true; window.open(X_URL+encodeURIComponent(t),'_blank','noopener'); xm.classList.remove('on'); setTimeout(function(){opening=false;},1500);});xt.appendChild(b);});
+  function openX(){xm.classList.add('on');}
+  document.getElementById('xOpen').addEventListener('click',openX);
+  document.getElementById('xClose').addEventListener('click',function(){xm.classList.remove('on');});
+  xm.addEventListener('click',function(e){if(e.target===xm)xm.classList.remove('on');});
+  var card=document.getElementById('doneCard'), ct=null;
+  function showCard(){if(ls('tomori_xnever')==='1')return;card.classList.add('on');clearTimeout(ct);ct=setTimeout(function(){card.classList.remove('on');},15000);}
+  document.getElementById('cardClear').addEventListener('click',function(){card.classList.remove('on');document.getElementById('clearNames').click();});
+  document.getElementById('cardX').addEventListener('click',function(){card.classList.remove('on');openX();});
+  document.getElementById('cardClose').addEventListener('click',function(){card.classList.remove('on');});
+  document.getElementById('cardNever').addEventListener('click',function(){ls('tomori_xnever','1');card.classList.remove('on');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){xm.classList.remove('on');ask.classList.remove('on');msg.classList.remove('on');}});
+
+  render();
+})();
+</script>
+</body>
+</html>

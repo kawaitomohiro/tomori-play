@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>背景｜トモリの火が消えた夜</title><style>
+:root{--bg:#07091a;--bg2:#12173a;--ink:#f3f1ff;--dim:#a3a7cf;--line:rgba(255,255,255,.12);--gold:#ffcf6e;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(1200px 600px at 50% -200px,#2a2466 0%,transparent 70%),linear-gradient(180deg,var(--bg),var(--bg2));color:var(--ink);
+  font-family:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.6;min-height:100vh}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 60px}
+.hero{text-align:center;padding:30px 0 12px}
+.hero .en{font-family:Georgia,serif;letter-spacing:.5em;color:var(--gold);font-size:.85rem;opacity:.85}
+.hero h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:900;letter-spacing:.08em;margin:6px 0;background:linear-gradient(180deg,#fff6d8,#ffcf6e 55%,#e8912f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--dim);font-size:.9rem}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0 18px}
+.tab,.btn{font:inherit;font-weight:800;cursor:pointer;border-radius:999px}
+.tab{font-size:1rem;padding:10px 18px;border:1px solid rgba(255,207,110,.45);background:rgba(255,207,110,.08);color:#ffe6b0}
+.tab.on{background:linear-gradient(180deg,#ffcf6e,#e8912f);color:#3a2500;border-color:transparent}
+.btn{font-size:.88rem;padding:7px 13px;border:1px solid var(--line);background:#1c2350;color:#fff}
+.btn.on{background:#ffcf6e;color:#3a2500;border-color:transparent}
+.btn.big{font-size:1rem;padding:10px 18px;background:linear-gradient(180deg,#ffcf6e,#e8912f);color:#3a2500;border:none}
+.sec{display:none}.sec.on{display:block}
+.card{border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:14px;margin-bottom:18px}
+.card h2{font-size:1.2rem;font-weight:900;color:var(--gold)}
+.card .use{font-size:.82rem;color:var(--dim);margin-bottom:8px}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.pic{position:relative;background:#000;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:200px}
+.pic img{display:block;max-width:100%;max-height:70vh}
+.pic.white{background:#fff}
+.wait{color:var(--dim);font-size:.85rem;padding:30px}
+.how{border-radius:16px;border:1px solid rgba(127,216,200,.35);background:rgba(127,216,200,.06);padding:14px 16px;margin-bottom:18px;font-size:.93rem}
+.how h3{color:#7fd8c8;font-size:1.02rem;margin:10px 0 4px}.how h3:first-child{margin-top:0}
+.how ol,.how ul{padding-left:1.3em}.how li{margin:3px 0}.how b{color:#ffe6b0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.th{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;cursor:pointer;text-align:left;font:inherit;color:inherit;padding:0}
+.th .im{aspect-ratio:16/9;background:#0b0f26;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:.75rem}
+.th .im img{width:100%;height:100%;object-fit:cover;display:block}
+.th .cap{padding:7px 10px;font-size:.86rem;background:#141a40}
+.th .cap b{color:var(--gold);margin-right:6px}
+.th .cap .num{display:inline-block;min-width:1.7em;height:1.7em;line-height:1.7em;text-align:center;border-radius:50%;background:var(--gold);color:#3a2500;font-weight:900;margin-right:6px}
+.th .cap .cl{display:block;margin-top:4px;font-size:.8rem;color:#ffe6b0;font-weight:700;line-height:1.45}
+.th .cap .cl i{font-style:normal;background:#ffe6b0;color:#2a1c00;border-radius:4px;padding:0 5px;margin-right:5px;font-size:.72rem}
+.th .cap .tp{display:block;margin-top:3px;font-size:.72rem;color:var(--dim);line-height:1.45}
+.note{font-size:.82rem;color:var(--dim);margin:6px 0 12px}
+#show{position:fixed;inset:0;background:#000;z-index:999;display:none;cursor:none}
+html.showing,html.showing body{overflow:hidden!important;scrollbar-width:none}html.showing::-webkit-scrollbar,html.showing body::-webkit-scrollbar{display:none}   /* 2026-11-17 映すと右に白い線＝ページのスクロールバーが残っていた。映している間は消す */
+#show.on{display:block}
+#show img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity 2s ease}   /* 「ゆっくり」の時は2秒かけて入れかわる */
+#show .lb{position:absolute;left:12px;bottom:10px;color:rgba(255,255,255,.55);font-size:15px;font-weight:700;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:8px;cursor:default}
+#show .x{position:absolute;right:10px;top:8px;color:rgba(255,255,255,.5);font:inherit;font-size:14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:5px 10px;cursor:pointer}
+#show.hide .lb,#show.hide .x{display:none}
+/* きっかけ表の印刷（A4たて）2026-09-27 */
+#pc{display:none}
+@media print{ @page{size:A4;margin:10mm} body{background:#fff!important;color:#000!important} body>*:not(#pc){display:none!important} #pc{display:block!important;font-family:"BIZ UDPGothic","Hiragino Kaku Gothic ProN",sans-serif;color:#000}
+  #pc h1{font-size:20pt;margin:0 0 2mm} #pc .ld{display:flex;gap:3mm;margin-bottom:3mm} #pc .ld div{flex:1;border:1pt solid #000;border-radius:2mm;padding:2mm;font-size:9.5pt;line-height:1.5}
+  #pc table{width:100%;border-collapse:collapse} #pc tr{break-inside:avoid} #pc td{border-bottom:.8pt solid #999;padding:2mm 1mm;vertical-align:middle}
+  #pc .no{width:11mm;height:11mm;border-radius:50%;background:#000;color:#fff;font:700 15pt/11mm sans-serif;text-align:center} #pc img{width:46mm;display:block;border-radius:1mm}
+  #pc .sc{font-size:8.5pt;color:#444;font-weight:700} #pc .line{font-size:12.5pt;font-weight:700;line-height:1.4} #pc .who{background:#000;color:#fff;font-size:9pt;padding:0 1.5mm;border-radius:1mm;margin-right:1.5mm} #pc .tip{font-size:9pt;color:#222} #pc .ck{width:9mm;height:9mm;border:1pt solid #000;border-radius:1.5mm} }
+</style></head><body>
+<nav class="pubnav" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 4px;padding:8px 10px;line-height:1.9;background:rgba(255,191,85,.15);border-bottom:1px solid rgba(255,191,85,.35);font-family:inherit;margin:0 0 10px;border-radius:10px;box-sizing:border-box;max-width:100%"><a href="../index.html" style="color:#ffd98a;font-weight:800;text-decoration:none;padding:0 8px">← トップへ</a><span style="color:rgba(255,217,138,.5)">｜</span><a href="butai.html" style="color:#ffd98a;font-weight:800;text-decoration:none;padding:0 8px;white-space:nowrap">🏗️ 舞台</a><span style="color:rgba(255,217,138,.5)">｜</span><a href="haikei.html" aria-current="page" style="color:#2a1c00;background:#ffd98a;border-radius:8px;font-weight:800;text-decoration:none;padding:0 8px;white-space:nowrap">🎨 背景</a><span style="color:rgba(255,217,138,.5)">｜</span><a href="ongaku.html" style="color:#ffd98a;font-weight:800;text-decoration:none;padding:0 8px;white-space:nowrap">🎵 音楽</a><span style="color:rgba(255,217,138,.5)">｜</span><a href="ugoki.html" style="color:#ffd98a;font-weight:800;text-decoration:none;padding:0 8px;white-space:nowrap">🎭 動き</a><span style="color:rgba(255,217,138,.5)">｜</span><a href="ishou.html" style="color:#ffd98a;font-weight:800;text-decoration:none;padding:0 8px;white-space:nowrap">🧥 衣装</a></nav>
+<div class="wrap">
+<div class="hero"><div class="en">BACKGROUND</div><h1>背景</h1><div class="sub">パネルに描く絵と、スクリーンに映す背景</div></div>
+<div class="tabs"><button class="tab on" data-s="panel">🖌️ パネルを描く</button><button class="tab" data-s="proj">🎞️ 映す背景（映像係）</button></div>
+
+<section class="sec on" id="s-panel">
+<div class="how">
+<h3>描き方（プロジェクターで映してなぞる）</h3>
+<ol>
+<li><b>先に模造紙を貼ってつなぐ</b>。1面（180×180cm）に模造紙6枚（横2×縦3）。3面ぶんで18枚＋予備4枚。</li>
+<li><b>パネルの真正面から映す</b>。下の「⛶ 大きく映す」で線画を画面いっぱいに出し、絵の四隅をパネルの角に合わせる。</li>
+<li><b>鉛筆（4B）でなぞる</b>→映すのをやめて、<b>黒の油性ペン（太）</b>で上からなぞる。</li>
+<li><b>塗る</b>：空・壁の地 → 石・岩・木・ドア → 葉・花・草 → 光る窓 → 最後に黒い線をなぞり直す。</li>
+</ol>
+<h3>光る窓は塗るだけ</h3>
+<p>切り抜かない。窓の中はオレンジ→黄→中心に白の3段。窓のまわりの壁だけ、ほんのりクリーム色にすると光って見える。</p>
+<h3>線画は2種類</h3>
+<p>「線画」は石や板の線まで残した版、「かんたん」は線を減らした版。まず線画を映してみて、多すぎたら かんたん に替える（森は かんたん がおすすめ）。</p>
+<h3>上手のパネルは両面</h3>
+<p>表に「魔女の山」、裏に「森」。片面を描いて乾かしてから裏返す。転換③で裏返すだけで四場の森になる。留め具で絵の大事な所が隠れないよう、先に立ててみる。</p>
+<h3>時間のめやす</h3>
+<p>貼る1時間＋なぞる約2時間半＋塗る約6時間＝<b>約10時間</b>。本番の3週間前には始める。</p>
+</div>
+<div id="panels"></div>
+</section>
+
+<section class="sec" id="s-proj">
+<div class="how">
+<h3>映像係の使い方</h3>
+<ul>
+<li>本番の順に20枚。<b>下の説明の所で「次へ」を押すだけ</b>（回想のあとの森の塔も入っている）。紙のきっかけ表は下の「🖨️ きっかけ表を印刷」で作れる。</li>
+<li>見たい絵を押すと、その絵から<b>全画面で映す</b>。</li>
+<li>次へ：<b>クリック・スペース・→・リモコン</b>。もどる：<b>←</b>。やめる：<b>Esc</b> か右上の「とじる」。</li>
+<li>左下の場面名は、ふだんは出さない（<b>H</b> で出す・消す）。全画面にならない時は、ブラウザの全画面（Macは Ctrl＋⌘＋F）。</li>
+<li>三場は幕が閉じているので映像なし。</li>
+</ul>
+</div>
+<div class="row"><span style="font-weight:800">色と明るさ：</span><button class="btn on" data-v="a">くっきり</button><button class="btn" data-v="b">くっきり＋明るく</button><button class="btn" data-v="c">もっとくっきり</button><button class="btn" data-v="d">かなり強め</button>
+<span class="note" style="margin:0 0 0 6px">会場で映して見くらべて決める</span></div>
+<div class="row"><span style="font-weight:800">切りかえ：</span><button class="btn" data-f="0">パッと</button><button class="btn on" data-f="1">ゆっくり（2秒）</button>
+<span class="note" style="margin:0 0 0 6px">悪口で空が暗くなる所は「ゆっくり」だと変化に気づきやすい</span></div>
+<div class="row"><button class="btn big" id="printCues">🖨️ きっかけ表を印刷（A4）</button><span class="note" style="margin:0 0 0 6px">映像係に配る紙。絵ときっかけのセリフが並ぶ（A4 4枚ほど）</span></div>
+<div class="grid" id="bgs"></div>
+<div id="koho-how" style="display:none"></div><div class="grid" id="kohos"></div>
+</section>
+</div>
+
+<div id="pc"></div>
+<div id="show" class="hide"><img id="showImg2" alt="" style="opacity:0"><img id="showImg" alt=""><div class="lb" id="showLb"></div><button class="x" id="showX">とじる（Esc）</button></div>
+
+<script>
+var M={"BG":[{"no":"00","t":"開演前 タイトル"},{"no":"01","t":"開演前〜プロローグ 静かな星空"},{"no":"02","t":"一場 バザールの星空"},{"no":"03a","t":"悪口① 星7割"},{"no":"03b","t":"悪口② 星5割"},{"no":"03c","t":"悪口③ 星3割"},{"no":"03d","t":"悪口④ 星わずか"},{"no":"05","t":"一場 深夜"},{"no":"05b","t":"深夜 星がひとつ強く"},{"no":"06a","t":"転換① 夜明け"},{"no":"06b","t":"二場 朝"},{"no":"06c","t":"二場 雲が出る"},{"no":"08","t":"四場 森の塔（塔の足元）"},{"no":"09","t":"四場 回想（青）"},{"no":"10a","t":"四場 種火"},{"no":"10b","t":"四場 塔に光が満ちる"},{"no":"11a","t":"結末 星が全部消える"},{"no":"11b","t":"結末 流れ星ひとつ"},{"no":"11c1","t":"結末 星がもどる①（大きい星）"},{"no":"11c2","t":"結末 星がもどる②（星がたくさん）"},{"no":"11c3","t":"結末 星がもどる③（満天）"},{"no":"12","t":"エピローグ 一年後"},{"no":"12b1","t":"エピローグ 店の案B（パン屋と薬屋）"},{"no":"12b2","t":"エピローグ 店の案B2（バザールの通り）"},{"no":"12b3","t":"エピローグ 店の案B3（空を広く）"},{"no":"12b4","t":"エピローグ 店の案B4（開店一周年）"},{"no":"12b5","t":"エピローグ 店の案B5（屋台車）"}],"PANEL":[{"k":"1","t":"下手パネル（表）ノアの家","use":"全場面"},{"k":"2","t":"上手パネル（表）魔女の山","use":"プロローグ〜三場・エピローグ"},{"k":"3","t":"上手パネル（裏）森","use":"四場・結末（転換③で裏返す）"}],"CUES":[{"i":0,"img":"00","scene":"開演前（幕は開いている）","how":"start","who":"","cue":"お客さんが入ってくる時から、題名の絵を映しておく（ボタンは押さない）","tip":"プロジェクターがちゃんと映るかの確かめも、この時にする"},{"i":1,"img":"01","scene":"開演の少し前","how":"action","who":"","cue":"幕が閉まったら","tip":"幕のうしろで、静かな星空にしておく（プロローグは幕の前）"},{"i":2,"img":"02","scene":"プロローグ → 一場","how":"line","who":"キジマル","cue":"ほら、始まるよ！","tip":"このセリフで幕が開く。幕と同時に押す"},{"i":3,"img":"03a","scene":"一場（悪口①）","how":"line","who":"チーズ屋","cue":"（こそっと）わかるよ。あの薬だって、あやしいもんさ。","tip":"舞台のみんなが0.5秒止まって「ひゅっ」の音。トモリが少し弱ったら押す"},{"i":4,"img":"03b","scene":"一場（悪口②）","how":"line","who":"ウワサリーナ","cue":"（こそっと）聞いた話じゃさ、人間たち、魔女の悪口で盛り上がってるらしいよ。","tip":"同じく「ひゅっ」→トモリが弱ったら押す"},{"i":5,"img":"03c","scene":"一場（悪口③）","how":"line","who":"くつ屋","cue":"（こそっと）……実は、わたしも。","tip":"同じく「ひゅっ」→トモリが弱ったら押す"},{"i":6,"img":"03d","scene":"一場（悪口④）","how":"line","who":"ムスットーネ","cue":"（こそっと）……さんせい。","tip":"4回目。トモリがはっきりちらつく。そのあとで押す"},{"i":7,"img":"05","scene":"一場（深夜）","how":"action","who":"","cue":"歌が終わって、みんなが「また来年！」と帰っていき、舞台にだれもいなくなったら","tip":"虫の声が聞こえたら押す"},{"i":8,"img":"05b","scene":"一場（深夜）","how":"line","who":"ノア①","cue":"……え？ トモリ……？ 元気、ない？","tip":"ノアがトモリに話しかける所。星がひとつ強く光る絵になる"},{"i":9,"img":"06a","scene":"一場の終わり（転換①）","how":"action","who":"","cue":"フラム①がトモリへ手を伸ばして、暗くなったら","tip":"暗転のあいだに押す（夜明けの空になる）"},{"i":10,"img":"06b","scene":"二場のはじまり","how":"action","who":"","cue":"二場の明かりがついたら（朝の広場）","tip":"ランプ屋の悲鳴の前に朝の空にしておく"},{"i":11,"img":"06c","scene":"二場","how":"line","who":"リナ（仕立て屋）","cue":"……待って。この布きれ、よく見て。……星の、ししゅうがある。","tip":"太鼓が1回なって、みんながルーチェを見る。空に雲が出る"},{"i":12,"img":"08","scene":"三場の終わり（転換③）","how":"line","who":"全員","cue":"——森だ！！","tip":"三場の間は幕が閉まっている。「森だ！！」で暗くなったら押す（幕のうしろで森の塔にしておく）"},{"i":13,"img":"09","scene":"四場（回想）","how":"line","who":"ノア③","cue":"……あの夜？","tip":"トライアングルが鳴って、照明が青くなる。いっしょに押す"},{"i":12,"img":"08","scene":"四場（回想がおわる）","how":"line","who":"フラム②","cue":"……誰か……誰かひとりでも、私を信じてくれ……！","tip":"照明がもとに戻る所で押す（森の塔にもどる）"},{"i":14,"img":"10a","scene":"四場（歌の儀式）","how":"action","who":"","cue":"ルーチェ③がトモリの前でひざまずき、トモリに小さな火がともったら","tip":"トモリ係と同時。とても静かな場面なので、ゆっくり押す"},{"i":15,"img":"10b","scene":"四場（歌の儀式）","how":"action","who":"","cue":"歌の歌のいちばん盛り上がる所の所","tip":"トモリがいっきに燃え上がるのと同時に押す"},{"i":16,"img":"11a","scene":"結末","how":"line","who":"ルーチェ③","cue":"…………あなた、だあれ？","tip":"このひと言で、星がぜんぶ消える。すぐ押す"},{"i":17,"img":"11b","scene":"結末","how":"line","who":"ルーチェ③","cue":"……星の、ししゅう……。きれい……。","tip":"小さな流れ星がひとつ出る絵"},{"i":18,"img":"11c1","scene":"結末（星がもどる）","how":"line","who":"フラム③","cue":"……思い出は、返せなかった。だが——見ろ。","tip":"フラムが夜空を指さしたら押す。サイトの背景ページで映すと、大きな星が1つずつ灯る（トライアングルと合わせて）。PDFは7つ同時"},{"i":19,"img":"11c2","scene":"結末（星がもどる）","how":"line","who":"フラム③","cue":"心が、もう、新しい火を灯してる。","tip":"フラムが言い終わったら押す。星がどんどん増えて、天の川が出る"},{"i":20,"img":"11c3","scene":"結末（星がもどる）","how":"line","who":"マーバ③・町長③","cue":"……頭が忘れても。／……心は、忘れない。","tip":"町長が言い終わったら押す。空いっぱいの星と月"},{"i":21,"img":"12","scene":"エピローグ（転換④）","how":"line","who":"チャチャ③","cue":"（語り）それから——あれから、いくつもの季節をこえて。","tip":"照明が落ちていく中で押す。最後までこの絵のまま"}],"STARS":{"w":1672,"h":941,"stars":[[0.3062,0.2444,0.01776,1,1],[0.4964,0.1222,0.01776,1,1],[0.8917,0.3433,0.01678,1,1],[0.756,0.44,0.01645,1,1],[0.2033,0.3507,0.01612,1,1],[0.1358,0.1562,0.01579,1,1],[0.2907,0.0553,0.01579,1,1],[0.4396,0.373,0.01513,1,1],[0.8953,0.0818,0.01513,1,1],[0.6501,0.2529,0.01414,1,1],[0.7614,0.0871,0.01086,1,1],[0.7111,0.6026,0.01086,1,1],[0.3828,0.1562,0.00269,2,0],[0.1884,0.0861,0.00269,2,0],[0.1238,0.3624,0.00269,2,0],[0.7153,0.2285,0.00269,2,0],[0.5736,0.1807,0.00269,2,0],[0.058,0.1275,0.00269,2,0],[0.951,0.203,0.00269,2,0],[0.6196,0.0393,0.00269,2,0],[0.3624,0.5696,0.00269,2,0],[0.5096,0.5845,0.00269,2,0],[0.5317,0.0298,0.00269,2,0],[0.8301,0.678,0.00269,2,0],[0.4683,0.2253,0.00269,2,0],[0.387,0.2827,0.00269,2,0],[0.2315,0.152,0.00269,2,0],[0.8295,0.5016,0.00269,2,0],[0.4127,0.051,0.00269,2,0],[0.3511,0.0925,0.00269,2,0],[0.5245,0.3039,0.00269,2,0],[0.5825,0.6302,0.00269,2,0],[0.0311,0.0351,0.00269,2,0],[0.3331,0.3911,0.00269,2,0],[0.5742,0.3826,0.00269,2,0],[0.8122,0.2976,0.00269,2,0],[0.1531,0.627,0.00269,2,0],[0.0736,0.2721,0.00269,2,0],[0.4635,0.508,0.00269,2,0],[0.1268,0.594,0.00269,2,0],[0.4462,0.4984,0.00269,2,0],[0.491,0.4049,0.00269,2,0],[0.6866,0.2869,0.00269,2,0],[0.2757,0.7131,0.00269,2,0],[0.2925,0.7258,0.00269,2,0],[0.4079,0.6759,0.00269,2,0],[0.439,0.5569,0.00269,2,0],[0.36,0.4431,0.00269,2,0],[0.5538,0.4176,0.00269,2,0],[0.3032,0.7248,0.00269,2,0],[0.6842,0.1296,0.00269,2,0],[0.6118,0.3858,0.00269,2,0],[0.6986,0.0489,0.00269,2,0],[0.5257,0.4538,0.00269,2,0],[0.7727,0.7173,0.00269,2,0],[0.2811,0.3741,0.00269,2,0],[0.0855,0.5313,0.00269,2,0],[0.7506,0.7301,0.00269,2,0],[0.6465,0.4687,0.00269,2,0],[0.6585,0.5569,0.00269,2,0],[0.808,0.1233,0.00269,2,0],[0.2919,0.5165,0.00269,2,0],[0.1902,0.2232,0.00269,2,0],[0.5144,0.4697,0.00269,2,0],[0.8888,0.5781,0.00269,2,0],[0.5197,0.4293,0.00269,2,0],[0.6836,0.322,0.00269,2,0],[0.2566,0.2965,0.00269,2,0],[0.375,0.7758,0.00269,2,0],[0.7626,0.2699,0.00269,2,0],[0.9145,0.2359,0.00269,2,0],[0.4719,0.4187,0.00269,2,0],[0.0323,0.1838,0.00269,2,0],[0.7518,0.2837,0.00269,2,0],[0.9725,0.0287,0.00269,2,0],[0.9593,0.0595,0.00269,2,0],[0.619,0.7853,0.00269,2,0],[0.7297,0.7333,0.00269,2,0],[0.3888,0.5537,0.00269,2,0],[0.3481,0.7588,0.00269,2,0],[0.61,0.2891,0.00269,2,0],[0.7673,0.1934,0.00269,2,0],[0.5299,0.526,0.00156,3,0],[0.5407,0.4442,0.00156,3,0],[0.9193,0.5175,0.00156,3,0],[0.7913,0.1732,0.00156,3,0],[0.2506,0.6939,0.00156,3,0],[0.4139,0.7928,0.00156,3,0],[0.4342,0.1807,0.00156,3,0],[0.3301,0.6047,0.00156,3,0],[0.7111,0.7333,0.00156,3,0],[0.7925,0.5313,0.00156,3,0],[0.6687,0.3358,0.00156,3,0],[0.1047,0.2253,0.00156,3,0],[0.4844,0.814,0.00156,3,0],[0.5969,0.0946,0.00156,3,0],[0.5365,0.4145,0.00156,3,0],[0.7769,0.3061,0.00156,3,0],[0.927,0.1233,0.00156,3,0],[0.6477,0.7683,0.00156,3,0],[0.619,0.3273,0.00156,3,0],[0.6675,0.7609,0.00156,3,0],[0.4342,0.7938,0.00156,3,0],[0.6184,0.3603,0.00156,3,0],[0.8523,0.1403,0.00156,3,0],[0.4617,0.5622,0.00156,3,0],[0.442,0.0903,0.00156,3,0],[0.5927,0.4155,0.00156,3,0],[0.7566,0.3475,0.00156,3,0],[0.8146,0.2062,0.00156,3,0],[0.3953,0.4113,0.00156,3,0],[0.4181,0.5271,0.00156,3,0],[0.5508,0.4888,0.00156,3,0],[0.3457,0.5547,0.00156,3,0],[0.5915,0.3358,0.00156,3,0],[0.485,0.5143,0.00156,3,0],[0.6848,0.7471,0.00156,3,0],[0.6878,0.2157,0.00156,3,0],[0.7823,0.2019,0.00156,3,0],[0.2626,0.187,0.00156,3,0],[0.701,0.3433,0.00156,3,0],[0.8463,0.1732,0.00156,3,0],[0.6304,0.3815,0.00156,3,0],[0.744,0.22,0.00156,3,0],[0.3917,0.4995,0.00156,3,0],[0.6711,0.1977,0.00156,3,0],[0.7213,0.3103,0.00156,3,0],[0.6017,0.2125,0.00156,3,0],[0.3971,0.7843,0.00156,3,0],[0.8062,0.6631,0.00156,3,0],[0.8343,0.3783,0.00156,3,0],[0.2614,0.5112,0.00156,3,0],[0.8606,0.0414,0.00156,3,0],[0.7075,0.2582,0.00156,3,0],[0.1525,0.4665,0.00156,3,0],[0.7949,0.0213,0.00156,3,0],[0.8062,0.1732,0.00156,3,0],[0.9994,0.0202,0.00156,3,0],[0.8325,0.1403,0.00156,3,0],[0.8786,0.1637,0.00156,3,0],[0.4282,0.4803,0.00156,3,0],[0.1083,0.5282,0.00156,3,0],[0.4605,0.8045,0.00156,3,0],[0.2889,0.6419,0.00156,3,0],[0.8636,0.1084,0.00156,3,0],[0.6902,0.3847,0.00156,3,0],[0.6818,0.5112,0.00156,3,0],[0.5604,0.3666,0.00156,3,0],[0.7404,0.2508,0.00156,3,0],[0.8242,0.169,0.00156,3,0],[0.8331,0.1828,0.00156,3,0],[0.5801,0.8013,0.00156,3,0],[0.5102,0.4984,0.00156,3,0],[0.6322,0.3029,0.00156,3,0],[0.1477,0.5994,0.00156,3,0],[0.5048,0.4336,0.00156,3,0],[0.8182,0.2455,0.00156,3,0],[0.5161,0.8215,0.00156,3,0],[0.6011,0.7938,0.00156,3,0],[0.3792,0.5909,0.00156,3,0],[0.5514,0.2795,0.00156,3,0],[0.6411,0.3645,0.00156,3,0],[0.6657,0.4134,0.00156,3,0],[0.863,0.1583,0.00156,3,0],[0.9856,0.0319,0.00156,3,0],[0.756,0.1637,0.00156,3,0],[0.5993,0.3103,0.00156,3,0],[0.4139,0.4888,0.00156,3,0],[0.878,0.2295,0.00156,3,0],[0.5586,0.458,0.00156,3,0],[0.6848,0.3624,0.00156,3,0],[0.5682,0.4134,0.00156,3,0],[0.7925,0.2242,0.00156,3,0],[0.7506,0.0266,0.00156,3,0],[0.3499,0.4888,0.00156,3,0],[0.9294,0.0755,0.00156,3,0],[0.6268,0.1647,0.00156,3,0],[0.4145,0.5569,0.00156,3,0],[0.3248,0.4729,0.00156,3,0],[0.5365,0.3847,0.00156,3,0],[0.5598,0.8098,0.00156,3,0],[0.7183,0.2784,0.00156,3,0],[0.5317,0.3624,0.00156,3,0],[0.701,0.1902,0.00156,3,0],[0.637,0.1732,0.00156,3,0],[0.6059,0.3496,0.00156,3,0],[0.6645,0.3634,0.00156,3,0],[0.5,0.3528,0.00156,3,0],[0.3068,0.6302,0.00156,3,0],[0.8553,0.2232,0.00156,3,0],[0.741,0.1339,0.00156,3,0],[0.6154,0.2232,0.00156,3,0],[0.82,0.1307,0.00156,3,0],[0.2476,0.5228,0.00156,3,0],[0.262,0.5611,0.00156,3,0],[0.7117,0.1913,0.00156,3,0],[0.3612,0.3443,0.00156,3,0],[0.7135,0.3486,0.00156,3,0],[0.9378,0.4814,0.00156,3,0],[0.9426,0.0999,0.00156,3,0],[0.6184,0.4506,0.00156,3,0],[0.3313,0.5367,0.00156,3,0],[0.4611,0.475,0.00156,3,0],[0.7632,0.6514,0.00156,3,0],[0.4886,0.4463,0.00156,3,0],[0.9432,0.0446,0.00156,3,0],[0.5413,0.2561,0.00156,3,0],[0.5526,0.2997,0.00156,3,0],[0.869,0.56,0.00156,3,0],[0.619,0.2572,0.00156,3,0],[0.7829,0.0425,0.00156,3,0],[0.9605,0.1031,0.00156,3,0],[0.5706,0.3326,0.00156,3,0],[0.5544,0.2168,0.00156,3,0],[0.9348,0.3294,0.00156,3,0],[0.7368,0.0266,0.00156,3,0],[0.7931,0.1201,0.00156,3,0],[0.7267,0.3326,0.00156,3,0],[0.9749,0.3273,0.00156,3,0],[0.8445,0.2423,0.00156,3,0],[0.0789,0.3326,0.00156,3,0],[0.5,0.2954,0.00156,3,0],[0.6041,0.4346,0.00156,3,0],[0.2853,0.6079,0.00156,3,0],[0.3343,0.1615,0.00156,3,0],[0.8355,0.1063,0.00156,3,0],[0.7315,0.3634,0.00156,3,0],[0.4844,0.6695,0.00156,3,0],[0.8224,0.1031,0.00156,3,0],[0.1507,0.0393,0.00156,3,0],[0.4797,0.4772,0.00156,3,0],[0.0957,0.3348,0.00156,3,0],[0.4904,0.5537,0.00156,3,0],[0.5754,0.4899,0.00156,3,0],[0.6537,0.1488,0.00156,3,0],[0.5748,0.0255,0.00156,3,0],[0.9779,0.1828,0.00156,3,0],[0.7201,0.4081,0.00156,3,0],[0.5963,0.458,0.00156,3,0],[0.6148,0.1573,0.00156,3,0],[0.5311,0.5027,0.00156,3,0],[0.4199,0.6068,0.00156,3,0]]}};
+var FILE={"ba0":"../assets/haikei/bg_00.jpg","ba1":"../assets/haikei/bg_01.jpg","ba2":"../assets/haikei/bg_02.jpg","ba3":"../assets/haikei/bg_03a.jpg","ba4":"../assets/haikei/bg_03b.jpg","ba5":"../assets/haikei/bg_03c.jpg","ba6":"../assets/haikei/bg_03d.jpg","ba7":"../assets/haikei/bg_05.jpg","ba8":"../assets/haikei/bg_05b.jpg","ba9":"../assets/haikei/bg_06a.jpg","ba10":"../assets/haikei/bg_06b.jpg","ba11":"../assets/haikei/bg_06c.jpg","ba12":"../assets/haikei/bg_08.jpg","ba13":"../assets/haikei/bg_09.jpg","ba14":"../assets/haikei/bg_10a.jpg","ba15":"../assets/haikei/bg_10b.jpg","ba16":"../assets/haikei/bg_11a.jpg","ba17":"../assets/haikei/bg_11b.jpg","ba18":"../assets/haikei/bg_11c1.jpg","ba19":"../assets/haikei/bg_11c2.jpg","ba20":"../assets/haikei/bg_11c3.jpg","ba21":"../assets/haikei/bg_12.jpg","p1c":"../assets/haikei/panel_1c.jpg","p1l":"../assets/haikei/panel_1l.jpg","p1s":"../assets/haikei/panel_1s.jpg","p2c":"../assets/haikei/panel_2c.jpg","p2l":"../assets/haikei/panel_2l.jpg","p2s":"../assets/haikei/panel_2s.jpg","p3c":"../assets/haikei/panel_3c.jpg","p3l":"../assets/haikei/panel_3l.jpg","p3s":"../assets/haikei/panel_3s.jpg"};
+function load(key,cb){ var u=FILE[key]; if(!u){ cb(''); return; } var im=new Image(); im.onload=function(){ cb(u); }; im.onerror=function(){ cb(''); }; im.src=u; }
+var cache={};
+function get(key,cb){ if(cache[key]) return cb(cache[key]);
+  if(key.indexOf('bb')===0){ get('ba'+key.slice(2),function(u){ if(!u) return cb(''); brighter(u,function(v){ cache[key]=v; cb(v); }); }); return; }
+  if(key.indexOf('bc')===0){ get('ba'+key.slice(2),function(u){ if(!u) return cb(''); bolder(u,function(v){ cache[key]=v; cb(v); },1.2,1.1,1); }); return; }
+  if(key.indexOf('bd')===0){ get('ba'+key.slice(2),function(u){ if(!u) return cb(''); bolder(u,function(v){ cache[key]=v; cb(v); },1.5,1.25,1.08); }); return; }
+  load(key,function(u){ if(u) cache[key]=u; cb(u); }); }
+/* もっとくっきり＝くっきり の色をさらに1.2倍・コントラスト1.1倍／かなり強め＝色1.5倍・コントラスト1.25倍・明るさ1.08倍（体育館が明るい時） */
+function bolder(u,cb,S,C,L){ var im=new Image(); im.onload=function(){ try{ var c=document.createElement('canvas'); c.width=im.naturalWidth; c.height=im.naturalHeight; var x=c.getContext('2d'); x.drawImage(im,0,0);
+    var d=x.getImageData(0,0,c.width,c.height), p=d.data;
+    for(var j=0;j<p.length;j+=4){ var r=p[j],g=p[j+1],b=p[j+2], y=0.299*r+0.587*g+0.114*b;
+      r=y+(r-y)*S; g=y+(g-y)*S; b=y+(b-y)*S; p[j]=((r-128)*C+128)*L; p[j+1]=((g-128)*C+128)*L; p[j+2]=((b-128)*C+128)*L; }
+    x.putImageData(d,0,0); cb(c.toDataURL('image/jpeg',0.86)); }catch(e){ cb(u); } }; im.onerror=function(){ cb(u); }; im.src=u; }
+/* もっと明るめ＝明るめ をもう一段明るく（明るめ はガンマ0.78、もっと明るめ は0.62 → 明るめ の値を0.795乗） */
+var LUT=null;
+function brighter(u,cb){ var im=new Image(); im.onload=function(){ try{ var c=document.createElement('canvas'); c.width=im.naturalWidth; c.height=im.naturalHeight; var x=c.getContext('2d'); x.drawImage(im,0,0);
+    var d=x.getImageData(0,0,c.width,c.height), p=d.data; if(!LUT){ LUT=new Uint8ClampedArray(256); for(var i=0;i<256;i++) LUT[i]=Math.round(255*Math.pow(i/255,0.795)); }
+    for(var j=0;j<p.length;j+=4){ p[j]=LUT[p[j]]; p[j+1]=LUT[p[j+1]]; p[j+2]=LUT[p[j+2]]; } x.putImageData(d,0,0); cb(c.toDataURL('image/jpeg',0.86)); }catch(e){ cb(u); } }; im.onerror=function(){ cb(u); }; im.src=u; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---- タブ ---- */
+Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(b){ b.onclick=function(){
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(x){ x.classList.toggle('on',x===b); });
+  Array.prototype.forEach.call(document.querySelectorAll('.sec'),function(x){ x.classList.toggle('on',x.id==='s-'+b.getAttribute('data-s')); });
+  if(b.getAttribute('data-s')==='proj') thumbs();
+  try{ localStorage.setItem('tomori_haikei_tab',b.getAttribute('data-s')); }catch(e){} }; });
+
+/* ---- パネル ---- */
+var KIND=[['c','カラー'],['l','線画'],['s','かんたん']];
+(function(){ var h=''; M.PANEL.forEach(function(p){
+  h+='<div class="card"><h2>'+esc(p.t)+'</h2><div class="use">使う場面：'+esc(p.use)+'</div>'+
+    '<div class="row" data-p="'+p.k+'">'+KIND.map(function(k,i){ return '<button class="btn'+(i===0?' on':'')+'" data-k="'+k[0]+'">'+k[1]+'</button>'; }).join('')+
+    '<button class="btn big" data-big="1">⛶ 大きく映す</button></div>'+
+    '<div class="pic" id="pic'+p.k+'"><div class="wait">読みこみ中…</div></div></div>'; });
+  document.getElementById('panels').innerHTML=h;
+  M.PANEL.forEach(function(p){ var row=document.querySelector('.row[data-p="'+p.k+'"]'); var cur='c';
+    function draw(){ var box=document.getElementById('pic'+p.k); box.className='pic'+(cur==='c'?'':' white'); box.innerHTML='<div class="wait">読みこみ中…</div>';
+      get('p'+p.k+cur,function(u){ box.innerHTML=u?'<img src="'+u+'" alt="">':'<div class="wait">読みこめませんでした。開き直してください。</div>'; }); }
+    Array.prototype.forEach.call(row.querySelectorAll('button'),function(b){ b.onclick=function(){
+      if(b.getAttribute('data-big')){ openShow([{key:'p'+p.k+cur, lb:p.t+'（'+KIND.filter(function(k){return k[0]===cur;})[0][1]+'）', white:cur!=='c'}],0); return; }
+      cur=b.getAttribute('data-k'); Array.prototype.forEach.call(row.querySelectorAll('button[data-k]'),function(x){ x.classList.toggle('on',x===b); }); draw(); }; });
+    draw(); });
+})();
+
+/* ---- 映す背景 ---- */
+var V='a'; try{ var sv=localStorage.getItem('tomori_haikei_v'); if(sv==='b'||sv==='c'||sv==='d') V=sv; }catch(e){}
+function list(){ return M.CUES.map(function(c,n){ var b=M.BG[c.i]; return { key:'b'+V+c.i, lb:(n+1)+'　'+b.t }; }); }
+var built='';
+var KO=M.BG.map(function(b,i){ return i; }).filter(function(i){ var n=M.BG[i].no; return false; });
+function kList(){ return KO.map(function(i){ return { key:'b'+V+i, lb:M.BG[i].no+'　'+M.BG[i].t }; }); }
+function kThumbs(){ var g=document.getElementById('kohos'); if(!KO.length){ document.getElementById('koho-how').style.display='none'; return; }
+  g.innerHTML=KO.map(function(i,n){ var b=M.BG[i]; return '<button class="th" data-k="'+n+'"><div class="im" id="kh'+n+'">読みこみ中…</div><div class="cap"><b>'+esc(b.no)+'</b>'+esc(b.t)+'</div></button>'; }).join('');
+  Array.prototype.forEach.call(g.querySelectorAll('.th'),function(t){ t.onclick=function(){ openShow(kList(), +t.getAttribute('data-k')); }; });
+  var v=V; (function one(n){ if(n>=KO.length||v!==V) return; get('b'+v+KO[n],function(u){ if(v!==V) return; var el=document.getElementById('kh'+n); if(el) el.innerHTML=u?'<img src="'+u+'" alt="">':'—'; one(n+1); }); })(0); }
+function thumbs(){ if(built===V) return; built=V; var g=document.getElementById('bgs');
+  var LB={start:'はじめに',line:'このセリフのあと',action:'この時'};
+  g.innerHTML=M.CUES.map(function(c,n){ var b=M.BG[c.i]; return '<button class="th" data-n="'+n+'"><div class="im" id="th'+n+'">読みこみ中…</div><div class="cap"><span class="num">'+(n+1)+'</span><b>'+esc(b.no)+'</b>'+esc(b.t)+
+    '<span class="cl"><i>'+LB[c.how]+'</i>'+(c.who?esc(c.who)+'「':'')+esc(c.cue)+(c.who?'」':'')+'</span><span class="tp">'+esc(c.tip)+'</span></div></button>'; }).join('');
+  Array.prototype.forEach.call(g.querySelectorAll('.th'),function(t){ t.onclick=function(){ openShow(list(), +t.getAttribute('data-n')); }; });
+  var v=V; (function one(n){ if(v!==V) return; if(n>=M.CUES.length){ kThumbs(); return; } get('b'+v+M.CUES[n].i,function(u){ if(v!==V) return; var el=document.getElementById('th'+n); if(el) el.innerHTML=u?'<img src="'+u+'" alt="">':'—'; one(n+1); }); })(0); }
+Array.prototype.forEach.call(document.querySelectorAll('.btn[data-v]'),function(b){ b.onclick=function(){ V=b.getAttribute('data-v');
+  Array.prototype.forEach.call(document.querySelectorAll('.btn[data-v]'),function(x){ x.classList.toggle('on',x===b); });
+  try{ localStorage.setItem('tomori_haikei_v',V); }catch(e){} thumbs(); }; });
+Array.prototype.forEach.call(document.querySelectorAll('.btn[data-v]'),function(x){ x.classList.toggle('on',x.getAttribute('data-v')===V); });
+
+/* ---- 全画面で映す ---- */
+var S=[], si=0, show=document.getElementById('show');
+var FADE=true; try{ if(localStorage.getItem('tomori_haikei_fade')==='0') FADE=false; }catch(e){}
+Array.prototype.forEach.call(document.querySelectorAll('.btn[data-f]'),function(b){ b.classList.toggle('on',(b.getAttribute('data-f')==='1')===FADE);
+  b.onclick=function(){ FADE=b.getAttribute('data-f')==='1'; try{ localStorage.setItem('tomori_haikei_fade',FADE?'1':'0'); }catch(e){}
+    Array.prototype.forEach.call(document.querySelectorAll('.btn[data-f]'),function(x){ x.classList.toggle('on',x===b); }); }; });
+var front='showImg';
+function paint(first){ var s=S[si]; document.getElementById('showLb').textContent=s.lb+(S.length>1?'　（'+(si+1)+' / '+S.length+'）':'');
+  show.style.background=s.white?'#fff':'#000';
+  stopAnim(); var ph=first?0:phaseOf(s.key);
+  get(s.key,function(u){ if(S[si]!==s) return;
+    var a=document.getElementById(front), b=document.getElementById(front==='showImg'?'showImg2':'showImg');
+    if(ph){ starAnim(ph,function(){ if(S[si]!==s) return; b.style.transition='none'; b.style.opacity=0; b.src=u; void b.offsetWidth;
+        b.style.transition='opacity 1.6s ease'; a.style.transition='opacity 1.6s ease'; b.style.opacity=1; a.style.opacity=0; front=b.id;
+        setTimeout(function(){ if(ANIM) stopAnim(); b.style.transition=''; a.style.transition=''; }, 1700); }); return; }
+    if(first||!FADE){ a.style.transition='none'; b.style.transition='none'; a.src=u; a.style.opacity=1; b.style.opacity=0; return; }
+    b.style.transition='none'; b.style.opacity=0; b.src=u; void b.offsetWidth;
+    b.style.transition=''; a.style.transition=''; b.style.opacity=1; a.style.opacity=0; front=b.id; });
+  if(S[si+1]) get(S[si+1].key,function(){}); }
+/* ---- 結末「星がもどる」：星が1つずつ、ぽっと灯る（映す絵と同じ位置） ---- */
+var ANIM=null;
+function phaseOf(key){ var i=+key.slice(2), b=M.BG[i]; if(!b) return 0; var m=b.no.match(/^11c([123])$/); return m?+m[1]:0; }
+function stopAnim(){ if(ANIM){ cancelAnimationFrame(ANIM.raf); if(ANIM.cv.parentNode) ANIM.cv.parentNode.removeChild(ANIM.cv); ANIM=null; } }
+function starAnim(ph, done){ stopAnim(); var img=document.getElementById(front); var W=M.STARS.w, H=M.STARS.h;
+  var cv=document.createElement('canvas'); cv.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none'; show.insertBefore(cv, document.getElementById('showLb'));
+  var r=show.getBoundingClientRect(); cv.width=r.width*devicePixelRatio; cv.height=r.height*devicePixelRatio;
+  var sc=Math.min(cv.width/W, cv.height/H), ox=(cv.width-W*sc)/2, oy=(cv.height-H*sc)/2, g=cv.getContext('2d');
+  var list=M.STARS.stars.filter(function(s){ return s[3]===ph; });
+  list.sort(function(a,b){ return (b[4]-a[4])||(b[2]-a[2]); });   /* 十字の大きい星から */
+  var gap=ph===1?900:Math.max(12, 3200/list.length), t0=performance.now();
+  function star(s,k){ var x=ox+s[0]*W*sc, y=oy+s[1]*H*sc, R=s[2]*W*sc; if(k<=0) return; var e=k<0.35?k/0.35*1.35:(k<0.6?1.35-(k-0.35)/0.25*0.35:1);
+    g.save(); g.globalCompositeOperation='lighter'; g.globalAlpha=Math.min(1,k*2.5);
+    var h=g.createRadialGradient(x,y,0,x,y,R*2.4*e); h.addColorStop(0,'rgba(255,236,185,.9)'); h.addColorStop(.25,'rgba(255,220,150,.35)'); h.addColorStop(1,'rgba(255,220,150,0)'); g.fillStyle=h; g.beginPath(); g.arc(x,y,R*2.4*e,0,7); g.fill();
+    if(s[4]){ g.fillStyle='rgba(255,244,210,.95)'; [[0,1.9,.16],[90,1.9,.16],[45,.8,.1],[135,.8,.1]].forEach(function(q){ var a=q[0]*Math.PI/180, dx=Math.cos(a), dy=Math.sin(a), L=R*q[1]*e, w=R*q[2]*e;
+      g.beginPath(); g.moveTo(x+dx*L,y+dy*L); g.lineTo(x-dy*w,y+dx*w); g.lineTo(x-dx*L,y-dy*L); g.lineTo(x+dy*w,y-dx*w); g.closePath(); g.fill(); }); }
+    g.fillStyle='#fff8e0'; g.beginPath(); g.arc(x,y,Math.max(1,R*.25*e),0,7); g.fill(); g.restore(); }
+  function tick(now){ var t=now-t0; g.clearRect(0,0,cv.width,cv.height); var all=true;
+    list.forEach(function(s,i){ var k=(t-i*gap)/(ph===1?700:500); if(k<1) all=false; star(s,Math.min(1,k)); });
+    if(all && t>list.length*gap+800){ done(); return; } ANIM.raf=requestAnimationFrame(tick); }
+  ANIM={cv:cv, raf:requestAnimationFrame(tick)}; }
+function openShow(list,i){ S=list; si=i; document.documentElement.classList.add('showing'); show.classList.add('on'); paint(true);
+  try{ var d=document.documentElement; if(d.requestFullscreen) d.requestFullscreen().catch(function(){}); }catch(e){} }
+function closeShow(){ stopAnim(); show.classList.remove('on'); document.documentElement.classList.remove('showing'); try{ if(document.fullscreenElement) document.exitFullscreen(); }catch(e){} }
+function step(d){ var n=si+d; if(n<0||n>=S.length) return; si=n; paint(); }
+show.addEventListener('click',function(e){ if(e.target.id==='showX'){ closeShow(); return; } step(1); });
+show.addEventListener('contextmenu',function(e){ e.preventDefault(); step(-1); });
+document.addEventListener('keydown',function(e){ if(!show.classList.contains('on')) return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(e.key)>=0){ e.preventDefault(); step(1); }
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>=0){ e.preventDefault(); step(-1); }
+  else if(e.key==='Escape'){ closeShow(); }
+  else if(e.key==='h'||e.key==='H'){ show.classList.toggle('hide'); } });
+
+/* ---- きっかけ表を印刷：いま選んでいる明るさの絵で、A4の表を組んでから印刷 ---- */
+document.getElementById('printCues').onclick=function(){ var btn=this, LB={start:'はじめに',line:'このセリフのあとで',action:'この時に'}; btn.disabled=true; btn.textContent='⏳ 絵を集めています…';
+  var rows=[], n=0; (function one(k){ if(k>=M.CUES.length){ finish(); return; } var c=M.CUES[k]; get('b'+V+c.i,function(u){ rows[k]=u; one(k+1); }); })(0);
+  function finish(){ var h='<h1>映像係のきっかけ表</h1><div class="ld"><div><b>押すのは「次へ」だけ</b><br>→キー・スペース・クリック・リモコン。まちがえたら「←」で1つもどる。</div><div><b>コツ</b><br>セリフを聞き終えてから押す。悪口①〜④は、トモリ係が光を弱めたすぐあと。</div></div><table>';
+    M.CUES.forEach(function(c,k){ var b=M.BG[c.i]; h+='<tr><td><div class="no">'+(k+1)+'</div></td><td>'+(rows[k]?'<img src="'+rows[k]+'">':'')+'</td><td><div class="sc">'+esc(c.scene)+'　'+LB[c.how]+'</div><div class="line">'+(c.who?'<span class="who">'+esc(c.who)+'</span>':'')+esc(c.cue)+'</div><div class="tip">'+esc(c.tip)+'</div></td><td><div class="ck"></div></td></tr>'; });
+    document.getElementById('pc').innerHTML=h+'</table>'; btn.disabled=false; btn.textContent='🖨️ きっかけ表を印刷（A4）';
+    var imgs=document.querySelectorAll('#pc img'), left=imgs.length; if(!left){ window.print(); return; }
+    Array.prototype.forEach.call(imgs,function(im){ if(im.complete){ if(--left===0) window.print(); } else im.onload=im.onerror=function(){ if(--left===0) window.print(); }; }); } };
+try{ if(localStorage.getItem('tomori_haikei_tab')==='proj') document.querySelector('.tab[data-s="proj"]').click(); }catch(e){}
+</script>
+</body></html>
