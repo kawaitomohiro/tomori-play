@@ -146,6 +146,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
   <button type="button" class="storybtn" id="storyBtn">▶ あらすじを見る（2〜3分）</button>
 </header>
 <nav class="pages">
+  <a href="#story" id="storyNav">📖 あらすじ</a>
   <a href="#haiyaku">🎟️ 配役と台本</a>
   <a href="pages/butai.html">🏗️ 舞台</a>
   <a href="pages/haikei.html">🎨 背景</a>
@@ -252,11 +253,11 @@ html.st-lock,html.st-lock body{overflow:hidden}
   <button type="button" class="sub" id="cardClear">名前をぜんぶ消す</button> <button type="button" class="sub" id="cardX">📣 シェアする</button> <button type="button" class="sub" id="cardClose">閉じる</button> <button type="button" class="sub" id="cardNever">今後表示しない</button></div>
 <div id="busy">台本を作っています…</div>
 
-<script src="js/story.js"></script>
-<script src="js/data.js"></script>
-<script src="js/engine.js"></script>
+<script src="js/story.js?v=20261121b"></script>
+<script src="js/data.js?v=20261121b"></script>
+<script src="js/engine.js?v=20261121b"></script>
 <script src="js/vendor/docx.iife.js"></script>
-<script src="js/docx_export.js"></script>
+<script src="js/docx_export.js?v=20261121b"></script>
 <script>
 (function(){
   /* トップ画面：2.8秒見せてから消す（録画・試験は window.__noSplash で飛ばす） */
@@ -265,6 +266,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
   function afterSplash(){ if(!window.__noStory && !TomoriStory.seen()) TomoriStory.show(); }
   if(window.__noSplash){sp.remove();afterSplash();}else{setTimeout(function(){sp.classList.add('hide');afterSplash();setTimeout(function(){sp.remove();},600);},2800);}
   document.getElementById('storyBtn').addEventListener('click',function(){TomoriStory.show();});
+  document.getElementById('storyNav').addEventListener('click',function(e){e.preventDefault();TomoriStory.show();});
 
   var E=window.TomoriEngine, SN=E.SEGNAME;
   function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null;}}
