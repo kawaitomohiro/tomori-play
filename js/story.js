@@ -1,38 +1,47 @@
 /* あらすじ（紙芝居）。押すと次へ・音は最初に選ぶ・結末の手前で止める */
 (function () {
+  /* 絵は assets/story/sNN.jpg（_作り直し用/story_img で作る）。ch＝章（変わると章の題を出す）・fx＝縦長の画面で見せる横の位置・p＝光の粒の多さ */
+  var IMG = function (n) { return 'assets/story/s' + n + '.jpg'; };
   var SCENES = [
-    { bg: 'img/title.jpg', bgm: '00', kicker: 'プロローグ',
-      lines: ['人間の住む町と、魔女の住む山。', '町の広場には、百年間、一度も消えたことのない火が燃えています。', '友の火、<b>トモリ</b>。', 'これは、その火が消えた夜のお話です。'] },
-    { bg: 'assets/haikei/bg_02.jpg', bgm: '03', kicker: '星ふるバザール',
-      lines: ['年に一度、星がふる夜にだけ、魔女が山を下りてくる。', '人間と魔女が、けんかもせずに買い物をする<b>「星ふるバザール」</b>。', '町の子ノアと、魔女の子ルーチェは、この夜にしか会えない友だちです。'] },
-    { bg: 'assets/haikei/bg_05b.jpg', bgm: '08', kicker: 'ふたりの宝物',
-      lines: ['ノアは、初めてひとりで焼いたパンを。', 'ルーチェは、宝物のマントを切って、星のししゅうのお守りを。', '<q>大切なものはね——あげたら、なくならないの。ふたつに、なるの。</q>', '「来年は、ふたりでお店を出そう」。ゆびきり、げんまん。'] },
-    { bg: 'assets/haikei/bg_05.jpg', bgm: '07', kicker: 'ないしょ話',
-      lines: ['笑顔のうらで、町の人も魔女も、こっそり悪口を言い合っていました。', 'ひとこと言うたびに、トモリがふるえる。この火は、<b>信じ合う心</b>で燃えていたのです。', 'その夜おそく。弱っていくトモリを見たノアは、お守りを台座にそっと置きました。', '<q>今夜だけ、貸してあげる。</q>'] },
-    { bg: 'assets/haikei/bg_06c.jpg', bgm: '16', kicker: '消えたトモリ',
-      lines: ['朝。台座の上から、トモリが消えていました。', '残っていたのは、星のししゅうの布きれ。', '町の人は口々に「魔女の子が盗んだんだ！」。「ぼくが置いたんだ」というノアの声は、だれにも届きません。', '責められるノアを見て、ルーチェは一歩前へ出ました。<q>わたしが、やりました。</q>'] },
-    { bg: 'assets/haikei/bg_01.jpg', bgm: '20', kicker: '猫たちの捜査',
-      lines: ['<q>猫は、なんでも見ている。</q>', 'あの夜、黒いフードの人がトモリを抱いて、泣きながら森へ歩いていった——。', 'ノアと猫たち、町の人、山の魔女。みんなが、森の塔へ向かいます。'] },
-    { bg: 'assets/haikei/bg_09.jpg', bgm: '22', kicker: '三十年前の夜',
-      lines: ['塔にいたのは、魔法使いフラム。', '三十年前、消えかけたトモリを助けようとして、どろぼうと呼ばれた人。', '<q>誰かひとりでも、私を信じてくれ……！</q>', 'そして今、フラムは言いました。トモリを消したのは——', '<q>おまえたち、全員だ。</q>'] },
-    { bg: 'assets/haikei/bg_08.jpg', bgm: '24', kicker: '差し出す思い出',
-      lines: ['トモリをよみがえらせるには、「いちばん大切な思い出」を火に差し出すこと。', 'それは、大切な思い出を手ばなすということ。', 'それでも、町の人も魔女も、次々に思い出を差し出していく。', 'けれど、疑いのまじった思い出を、火は受け取らない。'] },
-    { bg: 'assets/haikei/bg_10b.jpg', bgm: '25', kicker: 'ルーチェの歌',
-      lines: ['ノアが、自分の思い出を差し出そうとする。その手を、ルーチェが止めました。', '<q>わたしの思い出のふたつめは……ノアの中に、あるから。</q>', '<q>——忘れても、友だちだよ。</q>', 'ルーチェはひとりで歌い出し、歌にのせて、いちばん大切な思い出を火に差し出しました。'] },
-    { end: true, bg: 'assets/haikei/bg_10b.jpg', bgm: '26' }
+    { bg: IMG('01'), bgm: '00', ch: 'プロローグ', fx: 50, p: 1, lines: ['人間の住む町と、魔女の住む山。'] },
+    { bg: IMG('02'), bgm: '00', fx: 50, p: 2, lines: ['町の広場には、百年間、一度も消えたことのない火が燃えています。', '友の火、<b>トモリ</b>。', 'これは、その火が消えた夜のお話です。'] },
+    { bg: IMG('03'), bgm: '03', ch: '第一章　星ふるバザール', fx: 60, p: 3, lines: ['年に一度、星がふる夜にだけ、', '魔女が山を下りてくる。'] },
+    { bg: IMG('04'), bgm: '03', fx: 50, p: 3, lines: ['人間と魔女が、けんかもせずに買い物をする', '<b>「星ふるバザール」</b>。'] },
+    { bg: IMG('05'), bgm: '03', fx: 42, p: 2, lines: ['町の子ノアと、魔女の子ルーチェ。', 'この夜にしか会えない、友だちです。'] },
+    { bg: IMG('06'), bgm: '08', ch: '第二章　ふたりの宝物', fx: 45, p: 1, lines: ['ノアは、初めてひとりで焼いたパンを。'] },
+    { bg: IMG('07'), bgm: '08', fx: 30, p: 1, lines: ['ルーチェは、宝物のマントを切って、', '星のししゅうのお守りを。'] },
+    { bg: IMG('08'), bgm: '08', fx: 50, p: 2, lines: ['<q>大切なものはね——あげたら、なくならないの。ふたつに、なるの。</q>', '「来年は、ふたりでお店を出そう」。ゆびきり、げんまん。'] },
+    { bg: IMG('09'), bgm: '07', ch: '第三章　ないしょ話', fx: 50, p: 0, lines: ['笑顔のうらで、', '町の人も魔女も、こっそり悪口を言い合っていました。'] },
+    { bg: IMG('10'), bgm: '07', fx: 50, p: 1, lines: ['ひとこと言うたびに、トモリがふるえる。', 'この火は、<b>信じ合う心</b>で燃えていたのです。'] },
+    { bg: IMG('11'), bgm: '07', fx: 35, p: 1, lines: ['その夜おそく。弱っていくトモリを見たノアは、', 'お守りを台座にそっと置きました。', '<q>今夜だけ、貸してあげる。</q>'] },
+    { bg: IMG('12'), bgm: '16', ch: '第四章　消えたトモリ', fx: 50, p: 0, lines: ['朝。', '台座の上から、トモリが消えていました。', '残っていたのは、星のししゅうの布きれ。'] },
+    { bg: IMG('13'), bgm: '16', fx: 45, p: 0, lines: ['<q>魔女の子が盗んだんだ！</q>', '「ぼくが置いたんだ」というノアの声は、だれにも届きません。'] },
+    { bg: IMG('14'), bgm: '16', fx: 62, p: 0, lines: ['責められるノアを見て、ルーチェは一歩前へ出ました。', '<q>わたしが、やりました。</q>'] },
+    { bg: IMG('15'), bgm: '20', ch: '第五章　猫たちの捜査', fx: 50, p: 1, lines: ['<q>猫は、なんでも見ている。</q>'] },
+    { bg: IMG('16'), bgm: '20', fx: 75, p: 1, lines: ['あの夜、黒いフードの人がトモリを抱いて、', '泣きながら森へ歩いていった——。'] },
+    { bg: IMG('17'), bgm: '20', fx: 50, p: 1, lines: ['ノアと猫たち、町の人、山の魔女。', 'みんなが、森の塔へ向かいます。'] },
+    { bg: IMG('18'), bgm: '22', ch: '第六章　三十年前の夜', fx: 45, p: 1, lines: ['森の塔の石段で、消えかけたトモリを抱いていたのは——', '魔法使い、フラム。'] },
+    { bg: IMG('19'), bgm: '22', fx: 50, p: 0, lines: ['三十年前、消えかけたトモリを助けようとして、', 'どろぼうと呼ばれた人。', '<q>誰かひとりでも、私を信じてくれ……！</q>'] },
+    { bg: IMG('20'), bgm: '22', fx: 68, p: 1, lines: ['そして今、フラムは言いました。', 'トモリを消したのは——', '<q>おまえたち、全員だ。</q>'] },
+    { bg: IMG('21'), bgm: '24', ch: '第七章　差し出す思い出', fx: 50, p: 2, lines: ['トモリをよみがえらせるには、', '「いちばん大切な、信じる心の思い出」を火に差し出すこと。', 'それは、大切な思い出を手ばなすということ。'] },
+    { bg: IMG('22'), bgm: '24', fx: 45, p: 1, lines: ['それでも、町の人も魔女も、次々に思い出を差し出していく。', 'けれど、疑いのまじった思い出を、火は受け取らない。'] },
+    { bg: IMG('23'), bgm: '25', ch: '第八章　ルーチェの歌', fx: 50, p: 2, lines: ['ノアが、自分の思い出を差し出そうとする。', 'その手を、ルーチェが止めました。', '<q>わたしの思い出のふたつめは……ノアの中に、あるから。</q>'] },
+    { bg: IMG('24'), bgm: '25', fx: 42, p: 3, lines: ['<q>——忘れても、友だちだよ。</q>', 'ルーチェはひとりで歌い出し、', '歌にのせて、いちばん大切な思い出を火に差し出しました。'] },
+    { end: true, bg: IMG('24'), bgm: '26', p: 3 }
   ];
+  (function () { var c = ''; SCENES.forEach(function (x) { if (x.ch) c = x.ch; x.chap = c; }); })();
   var BGMEXT = { '06': 'm4a', '12': 'm4a', '19': 'm4a' };
   var reduce = false; try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
-  var root, layers, cur = -1, sound = false, audio = null, all = [], fadeT = null, open = false, lock = false, top = 0, hidden = [];
+  var prevWasBack = false, root, layers, cur = -1, sound = false, audio = null, all = [], fadeT = null, open = false, lock = false, top = 0, hidden = [];
 
   function build() {
     root = document.createElement('div'); root.id = 'story'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-label', 'あらすじ');
     root.innerHTML =
-      '<div class="st-bg"></div><div class="st-bg"></div><div class="st-shade"></div>' +
+      '<div class="st-amb"></div><div class="st-bg"></div><div class="st-bg"></div><div class="st-shade"></div><canvas class="st-fx" aria-hidden="true"></canvas><div class="st-chap" aria-hidden="true"></div><div class="st-prog"><i></i></div>' +
       '<div class="st-start"><div class="st-sub">どんなお話？</div>' +
-      '<p>まず、あらすじを見てください（2〜3分・画面を押すと進みます）。</p>' +
+      '<p>まず、あらすじを見てください（約4分・絵本のように、画面を押すと進みます）。</p>' +
       '<button type="button" class="st-go" data-snd="1">♪ 音ありで見る</button><button type="button" class="st-go st-quiet" data-snd="0">音なしで見る</button>' +
       '<button type="button" class="st-skipnow">あらすじをとばす</button></div>' +
       '<div class="st-text" aria-live="polite"></div>' +
@@ -42,7 +51,6 @@
     document.body.appendChild(root);
     layers = root.querySelectorAll('.st-bg');
     var d = root.querySelector('.st-dots');
-    SCENES.forEach(function () { var i = document.createElement('i'); d.appendChild(i); });
     root.querySelectorAll('.st-go').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); sound = b.getAttribute('data-snd') === '1'; begin(); }); });
     root.querySelector('.st-skipnow').addEventListener('click', function (e) { e.stopPropagation(); close(); });
     root.querySelector('.st-skip').addEventListener('click', function (e) { e.stopPropagation(); close(); });
@@ -76,9 +84,11 @@
   function setBg(src, i) {
     var next = layers[1 - front];
     next.style.backgroundImage = 'url("' + src + '")';
-    next.classList.remove('zoom'); void next.offsetWidth; if (!reduce) next.classList.add('zoom');
+    next.style.setProperty('--fx', (SCENES[i].fx || 50) + '%');
+    root.querySelector('.st-amb').style.backgroundImage = 'url("' + src + '")';
+    next.classList.remove('kb0', 'kb1', 'kb2', 'kb3'); void next.offsetWidth; if (!reduce) next.classList.add('kb' + (i % 4));
     next.classList.add('on'); layers[front].classList.remove('on'); front = 1 - front;
-    var n = SCENES[i + 1]; if (n) { var im = new Image(); im.src = n.bg; }
+    [1, 2].forEach(function (k) { var n = SCENES[i + k]; if (n) { var im = new Image(); im.src = n.bg; } });
   }
 
   function render(i) {
@@ -93,13 +103,18 @@
       box.querySelector('.st-again').addEventListener('click', function (e) { e.stopPropagation(); go(0); });
     } else {
       box.className = 'st-text';
-      var h = '<div class="k l" style="--d:0">' + s.kicker + '</div>';
-      s.lines.forEach(function (t, j) { h += '<p class="l" style="--d:' + (0.5 + j * 1.1) + '">' + t + '</p>'; });
+      var first = !!s.ch && (i === 0 || !prevWasBack), wait = first ? 2.5 : 0.4;
+      var h = '<div class="k l" style="--d:' + (wait - 0.2) + '">' + s.chap + '</div>';
+      s.lines.forEach(function (t, j) { h += '<p class="l" style="--d:' + (wait + j * 1.1) + '">' + t + '</p>'; });
       box.innerHTML = h;
+      var cp = root.querySelector('.st-chap');
+      cp.classList.remove('on'); void cp.offsetWidth;
+      if (first) { var m = s.ch.split('　'); cp.innerHTML = (m[1] ? '<small>' + m[0] + '</small>' : '') + '<span>' + (m[1] || m[0]) + '</span>'; cp.classList.add('on'); }
     }
     root.classList.toggle('ending', !!s.end);
-    var dots = root.querySelectorAll('.st-dots i');
-    dots.forEach(function (d, j) { d.className = j === i ? 'on' : (j < i ? 'done' : ''); });
+    root.querySelector('.st-prog i').style.width = (i / (SCENES.length - 1) * 100) + '%';
+    root.querySelector('.st-dots').textContent = s.end ? '' : (i + 1) + ' / ' + (SCENES.length - 1);
+    fxLevel(s.p || 0);
     root.querySelector('.st-back').style.visibility = i > 0 ? 'visible' : 'hidden';
     root.querySelector('.st-hint').style.display = s.end ? 'none' : '';
   }
@@ -107,7 +122,7 @@
   function go(i) {
     if (i < 0 || i >= SCENES.length || i === cur || lock) return;
     lock = true; setTimeout(function () { lock = false; }, 450);   /* 連打で場面が飛ばないように */
-    var prev = cur; cur = i;
+    var prev = cur; cur = i; prevWasBack = i < prev;
     if (prev < 0 || SCENES[prev].bg !== SCENES[i].bg) setBg(SCENES[i].bg, i);
     render(i);
     if (sound && (prev < 0 || SCENES[prev].bgm !== SCENES[i].bgm)) play(SCENES[i].bgm);
@@ -129,6 +144,26 @@
   }
   function stopAudio() { clearInterval(fadeT); all.forEach(function (x) { x.pause(); }); all = []; audio = null; }
 
+  var cv, cx, parts = [], want = 0, raf = 0;
+  function fxLevel(n) { want = reduce ? 0 : [0, 18, 40, 80][n] || 0; if (want && !raf) raf = requestAnimationFrame(tick); }
+  function tick() {
+    raf = 0; if (!open) { parts = []; return; }
+    if (!cv) { cv = root.querySelector('.st-fx'); cx = cv.getContext('2d'); }
+    var w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, w, h);
+    while (parts.length < want) parts.push({ x: Math.random() * w, y: h + Math.random() * h * 0.5, r: 0.8 + Math.random() * 2.2, v: 0.25 + Math.random() * 0.6, s: Math.random() * 6.28, a: 0 });
+    parts.forEach(function (q) {
+      q.y -= q.v; q.s += 0.02; q.x += Math.sin(q.s) * 0.35; q.a = Math.min(1, q.a + 0.01);
+      var fade = Math.min(1, q.y / (h * 0.35)) * q.a * (0.55 + 0.45 * Math.sin(q.s * 3));
+      cx.beginPath(); cx.arc(q.x, q.y, q.r, 0, 6.29);
+      cx.fillStyle = 'rgba(255,214,130,' + Math.max(0, fade).toFixed(3) + ')'; cx.shadowColor = 'rgba(255,190,90,.9)'; cx.shadowBlur = 8; cx.fill();
+    });
+    parts = parts.filter(function (q) { return q.y > -10; });
+    if (parts.length > want) parts.splice(0, parts.length - want > 2 ? 2 : parts.length - want);
+    if (want || parts.length) raf = requestAnimationFrame(tick); else cx.clearRect(0, 0, w, h);
+  }
+
   function begin() {
     ls('tomori_story_seen', '1');
     root.classList.add('playing'); sndLabel(); cur = -1; go(0);
@@ -143,7 +178,7 @@
     setTimeout(function () { var b = root.querySelector('.st-go'); if (b) b.focus(); }, 50);
   }
   function close(to) {
-    stopAudio(); open = false;
+    stopAudio(); open = false; want = 0;
     root.classList.remove('show', 'playing'); document.documentElement.classList.remove('st-lock');
     hidden.forEach(function (el) { el.inert = false; }); hidden = [];
     if (to) { var el = document.getElementById(to); if (el) el.scrollIntoView({ block: 'start' }); }

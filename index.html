@@ -97,8 +97,19 @@ html.st-lock,html.st-lock body{overflow:hidden}
 #story.show{display:block}
 #story .st-bg{position:absolute;inset:0;background:#050818 center/cover no-repeat;opacity:0;transition:opacity 1.4s ease}
 #story .st-bg.on{opacity:1}
-#story .st-bg.zoom{animation:stZoom 14s ease-out forwards}
-@keyframes stZoom{from{transform:scale(1.0)}to{transform:scale(1.08)}}
+#story .st-bg.kb0{animation:kb0 18s ease-out forwards}#story .st-bg.kb1{animation:kb1 18s ease-out forwards}#story .st-bg.kb2{animation:kb2 18s ease-out forwards}#story .st-bg.kb3{animation:kb3 18s ease-out forwards}
+@keyframes kb0{from{transform:scale(1.02)}to{transform:scale(1.12)}}@keyframes kb1{from{transform:scale(1.12) translateX(2%)}to{transform:scale(1.12) translateX(-2%)}}@keyframes kb2{from{transform:scale(1.14)}to{transform:scale(1.03)}}@keyframes kb3{from{transform:scale(1.1) translate(-2%,1%)}to{transform:scale(1.12) translate(2%,-1%)}}
+#story .st-amb{position:absolute;inset:-40px;background:#050818 center/cover no-repeat;filter:blur(22px) brightness(.62) saturate(1.1);display:none}
+#story .st-bg{background-position:var(--fx,50%) 50%}
+@media (max-aspect-ratio:4/5){#story .st-amb{display:block}#story .st-bg{background-color:transparent;background-size:auto 56%;background-position:var(--fx,50%) 10%;-webkit-mask-image:linear-gradient(transparent 2%,#000 10%,#000 46%,transparent 60%);mask-image:linear-gradient(transparent 2%,#000 10%,#000 46%,transparent 60%)}#story .st-shade{background:linear-gradient(rgba(3,5,20,0),rgba(3,5,20,0) 55%,rgba(3,5,20,.6) 75%,rgba(3,5,20,.85))}}
+#story .st-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#story .st-chap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;opacity:0;font-family:"BIZ UDPMincho","Hiragino Mincho ProN","Yu Mincho",serif;background:radial-gradient(ellipse at center,rgba(3,5,20,.55),rgba(3,5,20,0) 70%)}
+#story .st-chap small{font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:#e9dcb4;margin-bottom:10px;text-shadow:0 2px 10px #000}
+#story .st-chap span{font-size:clamp(30px,6.4vw,64px);font-weight:700;letter-spacing:.14em;color:#ffd98a;text-shadow:0 0 24px rgba(255,190,90,.55),0 3px 14px #000}
+#story .st-chap.on{animation:chap 2.6s ease forwards}
+@keyframes chap{0%{opacity:0;transform:scale(.96);filter:blur(6px)}25%{opacity:1;transform:none;filter:none}70%{opacity:1}100%{opacity:0;transform:scale(1.02)}}
+#story .st-prog{position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.12);display:none}#story.playing .st-prog{display:block}
+#story .st-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f0a83a,#ffd98a);box-shadow:0 0 8px #ffbf5a;transition:width .8s ease}
 #story .st-shade{position:absolute;inset:0;background:linear-gradient(rgba(3,5,20,.25),rgba(3,5,20,.15) 35%,rgba(3,5,20,.78) 75%,rgba(3,5,20,.9))}
 #story .st-start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 16px;background:rgba(3,5,20,.45);cursor:default}
 #story.playing .st-start{display:none}
@@ -125,13 +136,13 @@ html.st-lock,html.st-lock body{overflow:hidden}
 #story .st-bar{position:absolute;left:0;right:0;bottom:0;display:none;align-items:center;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
 #story.playing .st-bar{display:flex}
 #story .st-bar button{background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
-#story .st-dots{flex:1;display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+#story .st-dots{flex:1;text-align:center;font-size:13px;color:rgba(255,255,255,.75);letter-spacing:.1em}
 #story .st-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3)}
 #story .st-dots i.done{background:rgba(255,217,138,.6)}#story .st-dots i.on{background:#ffd98a;transform:scale(1.4)}
 #story .st-hint{position:absolute;top:12px;right:12px;font-size:13px;color:#fff;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:999px;display:none}
 #story.playing .st-hint{display:block}
 .storybtn{display:inline-block;margin-top:10px;padding:10px 18px;border-radius:999px;border:0;background:linear-gradient(#ffcf6b,#f0a83a);color:#3a2300;font-weight:800;font-size:16px;cursor:pointer;font-family:inherit;width:max-content}
-@media (prefers-reduced-motion:reduce){#story .st-bg{transition:none}#story .st-text .l{animation:none;opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#story .st-chap.on{animation:none;opacity:1}#story .st-bg{transition:none}#story .st-text .l{animation:none;opacity:1;transform:none}}
 @media (max-width:600px){#story .st-text{bottom:66px}#story .st-bar{gap:6px;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}#story .st-bar button{padding:7px 10px;font-size:13px}#story .st-dots i{width:6px;height:6px}}
 @media (prefers-reduced-motion:reduce){#splash{transition:none}}
 @media (max-width:600px){table{min-width:0}.grp,.memo{display:none}td.role{white-space:normal}td.role small{display:block}nav.pages{flex-wrap:nowrap;overflow-x:auto;padding:8px 12px}nav.pages a{white-space:nowrap;flex:0 0 auto}.ninzu .num{font-size:36px}.ninzu button{min-width:48px}.script .ln{padding-left:5.5em;text-indent:-5.5em}.script .ln b{min-width:5.5em}}
@@ -143,7 +154,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
 <header>
   <h1>トモリの火が消えた夜</h1>
   <p>〜わすれても、ともだち〜　学習発表会の劇（上演 約40分。83人以上は約42分）</p>
-  <button type="button" class="storybtn" id="storyBtn">▶ あらすじを見る（2〜3分）</button>
+  <button type="button" class="storybtn" id="storyBtn">▶ あらすじを見る（約4分）</button>
 </header>
 <nav class="pages">
   <a href="#story" id="storyNav">📖 あらすじ</a>
@@ -253,7 +264,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
   <button type="button" class="sub" id="cardClear">名前をぜんぶ消す</button> <button type="button" class="sub" id="cardX">📣 シェアする</button> <button type="button" class="sub" id="cardClose">閉じる</button> <button type="button" class="sub" id="cardNever">今後表示しない</button></div>
 <div id="busy">台本を作っています…</div>
 
-<script src="js/story.js?v=20261121b"></script>
+<script src="js/story.js?v=20261122e"></script>
 <script src="js/data.js?v=20261121b"></script>
 <script src="js/engine.js?v=20261121b"></script>
 <script src="js/vendor/docx.iife.js"></script>
