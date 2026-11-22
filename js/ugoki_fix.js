@@ -5,7 +5,7 @@
   if (typeof D === 'undefined' || typeof SCENES === 'undefined') return;
   var FIX = window.UGOKI_FIX || [];
   /* 2階のギャラリー（図の左はし・右はし）。録画で猫などが使った */
-  var GAL = { 'ギャ下1': [2, 64], 'ギャ下2': [2, 70], 'ギャ下3': [2, 76], 'ギャ下4': [2, 82], 'ギャ上1': [98, 64], 'ギャ上2': [98, 70], 'ギャ上3': [98, 76], 'ギャ上4': [98, 82] };
+  var GAL = { 'ギャ下1': [2, 72], 'ギャ下2': [2, 80], 'ギャ下3': [2, 88], 'ギャ下4': [2, 96], 'ギャ上1': [98, 72], 'ギャ上2': [98, 80], 'ギャ上3': [98, 88], 'ギャ上4': [98, 96] };
   var OFF = { '下手袖': [-8, 34], '上手袖': [108, 34] };
   var MK = {}; D.MARKS.forEach(function (m) { MK[m.n] = [m.x, m.y]; });
   Object.keys(GAL).forEach(function (k) { MK[k] = GAL[k]; });
@@ -29,7 +29,7 @@
   var st = document.getElementById('stage');
   if (st) {
     var css = document.createElement('style');
-    css.textContent = '.galz{position:absolute;top:59%;height:27%;width:3.6%;background:rgba(255,160,120,.10);border:1px dashed rgba(255,170,130,.55);border-radius:6px;pointer-events:none;z-index:1}.galz span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:.55rem;color:rgba(255,190,160,.75);letter-spacing:.06em}#galL{left:.2%}#galR{right:.2%}#galR span{transform:translate(-50%,-50%) rotate(90deg)}';
+    css.textContent = '.galz{position:absolute;top:67%;height:32%;width:3.6%;background:rgba(255,160,120,.10);border:1px dashed rgba(255,170,130,.55);border-radius:6px;pointer-events:none;z-index:1}.galz span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:.55rem;color:rgba(255,190,160,.75);letter-spacing:.06em}#galL{left:.2%}#galR{right:.2%}#galR span{transform:translate(-50%,-50%) rotate(90deg)}';
     document.head.appendChild(css);
     st.insertAdjacentHTML('beforeend', '<div class="galz" id="galL"><span>下手ギャラリー（2階）</span></div><div class="galz" id="galR"><span>上手ギャラリー（2階）</span></div>');
   }
