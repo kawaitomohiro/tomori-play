@@ -133,6 +133,11 @@ html.st-lock,html.st-lock body{overflow:hidden}
 #story .st-end button{margin:8px 6px 0;padding:12px 18px;border-radius:12px;border:0;font-size:17px;font-weight:800;cursor:pointer;font-family:"BIZ UDPGothic","Hiragino Sans",sans-serif}
 #story .st-tohai{background:linear-gradient(#ffcf6b,#f0a83a);color:#3a2300}
 #story .st-again{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4)!important}
+#story .st-tip{margin-top:.8em;padding:10px 14px;border-radius:12px;background:rgba(10,16,40,.78);border:1px solid rgba(255,217,138,.6);font-family:"BIZ UDPGothic","Hiragino Sans",sans-serif;font-size:clamp(14px,1.9vw,17px);line-height:1.7;text-shadow:none;text-align:left}
+#story .st-tip b{display:block;color:#ffd98a;font-size:.85em;letter-spacing:.1em;margin-bottom:2px}
+#story .st-bar .st-tch.on{background:#ffd98a;color:#2a1c00;border-color:#ffd98a;font-weight:800}
+#story .st-tnote{font-size:14px!important;opacity:.85}
+#story .st-dots{white-space:nowrap}
 #story .st-bar{position:absolute;left:0;right:0;bottom:0;display:none;align-items:center;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
 #story.playing .st-bar{display:flex}
 #story .st-bar button{background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
@@ -154,7 +159,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
 <header>
   <h1>トモリの火が消えた夜</h1>
   <p>〜わすれても、ともだち〜　学習発表会の劇（上演 約40分。83人以上は約42分）</p>
-  <button type="button" class="storybtn" id="storyBtn">▶ あらすじを見る（約4分）</button>
+  <button type="button" class="storybtn" id="storyBtn">▶ あらすじを見る（約6分）</button>
 </header>
 <nav class="pages">
   <a href="#story" id="storyNav">📖 あらすじ</a>
@@ -264,7 +269,7 @@ html.st-lock,html.st-lock body{overflow:hidden}
   <button type="button" class="sub" id="cardClear">名前をぜんぶ消す</button> <button type="button" class="sub" id="cardX">📣 シェアする</button> <button type="button" class="sub" id="cardClose">閉じる</button> <button type="button" class="sub" id="cardNever">今後表示しない</button></div>
 <div id="busy">台本を作っています…</div>
 
-<script src="js/story.js?v=20261122e"></script>
+<script src="js/story.js?v=20261122g"></script>
 <script src="js/data.js?v=20261121b"></script>
 <script src="js/engine.js?v=20261121b"></script>
 <script src="js/vendor/docx.iife.js"></script>
