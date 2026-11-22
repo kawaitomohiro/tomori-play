@@ -16,6 +16,7 @@
     if (!sc) { bad.push(f); return; }
     (f.who || []).forEach(function (nm, j) {
       var id = ID[nm], to = (f.to || [])[j], xy = MK[to] || OFF[to];
+      if (!xy && /^@-?[\d.]+,-?[\d.]+$/.test(to)) xy = to.slice(1).split(',').map(Number);   /* 印のない所は @x,y で書く */
       if (!id || !xy) { bad.push([f.scene, f.b, nm, to]); return; }
       var p = { x: xy[0], y: xy[1], on: OFF[to] ? 0 : 1, place: f.place ? f.place : to };
       if (!f.b) sc.init[id] = p;

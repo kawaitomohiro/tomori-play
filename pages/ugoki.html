@@ -523,6 +523,6 @@ buildTabs(); loadScene(0); buildMoments(); applyMode(); render(0);
   function wire(){ Array.prototype.forEach.call(box.querySelectorAll('.sw[data-i]'),function(b){ b.onclick=function(){ scIdx=+b.getAttribute('data-i'); render(); }; }); var pb=document.getElementById('jprintBtn'); if(pb) pb.onclick=printBook; }
   var sel=document.getElementById('roleSel'); if(sel){ sel.addEventListener('change',function(){ cur=sel.value; render(); }); setTimeout(function(){ cur=sel.value; render(); },60); }
   window.addEventListener('storage',function(){ setTimeout(function(){ cur=sel.value; render(); },80); });
-} })();</script><!--JIBUN_END--><script src="../js/ugoki_fix_data.js?v=2"></script><script src="../js/ugoki_fix.js?v=2"></script><script src="../js/ugoki_guide.js?v=4"></script>
+} })();</script><!--JIBUN_END--><script src="../js/ugoki_fix_data.js?v=3"></script><script src="../js/ugoki_fix.js?v=3"></script><script src="../js/ugoki_guide.js?v=4"></script>
 </body>
 </html>
