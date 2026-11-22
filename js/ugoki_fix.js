@@ -4,6 +4,9 @@
 (function () {
   if (typeof D === 'undefined' || typeof SCENES === 'undefined') return;
   var FIX = window.UGOKI_FIX || [];
+  /* 机・のぼりを録画の並びに置き直す（舞台に斜め7台＋左右のひな壇に1台ずつ） */
+  var PF = window.UGOKI_PROPS;
+  if (PF && D.PROPS) PF.scenes.forEach(function (k) { var re = new RegExp(PF.replace); D.PROPS[k] = (D.PROPS[k] || []).filter(function (p) { return !re.test(p.id); }).concat(PF.props); });
   /* 2階のギャラリー（図の左はし・右はし）。録画で猫などが使った */
   var GAL = { 'ギャ下1': [2, 72], 'ギャ下2': [2, 80], 'ギャ下3': [2, 88], 'ギャ下4': [2, 96], 'ギャ上1': [98, 72], 'ギャ上2': [98, 80], 'ギャ上3': [98, 88], 'ギャ上4': [98, 96] };
   var OFF = { '下手袖': [-8, 34], '上手袖': [108, 34] };
